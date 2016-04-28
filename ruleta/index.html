@@ -1,0 +1,31 @@
+<!-- Este documento fué creado por Gabriel García -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Les Jeux</title>
+<link href="css/estilo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>LES JEUX</h1>
+<h2>Ruleta On Line</h2>
+<div class="bloque1">
+  <p>Su Saldo es de $
+    <input class="bloque1.a" name="saldo" type="number" id="saldo" tabindex="1" value="100" readonly input/>
+  </p>
+  <p>Ingrese su número 
+	<input name="numero" type="number" id="numero" tabindex="2" value="" input/>
+  </p>	
+  <p>Ingrese su apuesta
+		<input name="apuesta" type="number" id="apuesta" tabindex="3" input/>
+  </p>
+</div>
+<p>
+  <input name="play" type="button" id="play" value="Jugar !!" tabindex="4" onClick='goPlay()'>
+</p>
+<p class="bloque2" id="nroGanador"></p>
+<p class="bloque3" id="avisoProblema"></p>
+<script type="text/javascript" src="js/codigo.js"></script>
+</body>
+</html>
