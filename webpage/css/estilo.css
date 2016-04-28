@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background-color:#9A011F;
+	/*background-image: url(../img/logo.jpg); no me estoy dando cuenta por qué no toma la imagen como fondo, opté por meterla como img del body
+	background:no-repeat;*/
+}
+#barraNav ul{
+   list-style-type: none;
+   text-align: center;
+   border:double;
+}
+#barraNav li{
+   display: inline;
+   text-align: center;
+   margin: 0 10px 0 0;
+}
+#barraNav li a {
+   padding: 2px 7px 2px 7px;
+   color: #666;
+   background-color: #eeeeee;
+   border: 1px solid #ccc;
+   text-decoration: none;
+   font:Verdana;
+}
+#barraNav li a:hover{
+	background-color:#666666;
+	color: #9A011F;
+}
+#logo {
+	text-align:center;
+}
+#formulario {
+	font:Verdana;
+	color:#003399;
+}
+.entrada{
+	background-color:#9A011F;
+	color:#FFFFFF;
+}
+.etiqueta{
+	color:#006699;
+}
+.blanco{
+	color:#FFFFFF;
+}
+#tabla{
+position:absolute;
+}

@@ -1,0 +1,64 @@
+<!-- Este documento fu&eacute;e creado por Gabriel Garc&iacute;a -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Fly-Art</title>
+<link href="css/estilo.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style type="text/css">
+<!--
+body {
+background-position:center;
+	background-image: url(img/logo.jpg);
+	background-repeat: no-repeat;
+}
+-->
+</style>
+
+<script type="text/javascript" src="js/formulario.js"></script>
+</head>
+
+<body>
+<div id="barraNav">
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="clases.html">CLASES</a></li>
+<li><a href="contacto.html">CONTACTO</a></li>
+</ul>
+</div>
+
+<div class="formulario">
+<form method="get" onsubmit="mailto:gabriel.c.garcia@gmail.com">
+  <br>
+    <span class="etiqueta">Nombre:</span>
+  <br>
+    <input class="entrada" type="text" name="name">
+  <br>
+    <span class="etiqueta">Email:</span>
+  <br>
+    <input  class="entrada" type="text" name="email">
+  <br>
+  	<label class="etiqueta" for="" >Sexo:
+      Masculino<input type="radio" name="genero" value="masculino"/>
+      Femenino<input type="radio" name="genero" value="femenino"/>
+    </label>
+  <br>
+    <span class="etiqueta">Mensaje:</span>
+  <br>
+    <textarea class="entrada" name="mensaje" rows="7" cols="30"></textarea>
+  <br>
+    <span class="etiqueta">¿Les gust&oacute; la web?</span>
+  <br>
+    <input type="checkbox" name="siGusto" id="siGusto" onClick="etiquetar()"/> 
+    <span class="etiqueta">SI</span>
+    <input type="checkbox" name="noGusto" id="noGusto" onClick="etiquetar()"/>
+    <span class="etiqueta">NO</span>
+  <p id="maso" class="blanco"></p>
+  <br>
+    <input id="submit_button" type="submit" value="Enviar email" />
+</form>
+</div>
+</body>
+
+</html>
