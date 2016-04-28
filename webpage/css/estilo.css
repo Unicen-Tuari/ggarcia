@@ -2,8 +2,8 @@
 /* CSS Document */
 body{
 	background-color:#9A011F;
-	/*background-image: url(../img/logo.jpg); no me estoy dando cuenta por qué no toma la imagen como fondo, opté por meterla como img del body
-	background:no-repeat;*/
+	background-image: url("../img/logo.jpg");
+	background:no-repeat;
 }
 #barraNav ul{
    list-style-type: none;
