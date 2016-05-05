@@ -2,37 +2,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Web Fly-Art</title>
-<link href="css/estilo.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/changeImg.js"></script>
+  <title>Web Fly-Art</title>
+  <link rel="stylesheet" href="css/estilo.css" media="screen" charset="utf-8">
+  <script src="js/codigoJS.js" charset="utf-8"></script>
 </head>
 
-<body>
-<div id="barraNav">
-<ul>
-<li><a href="index.html">HOME</a></li>
-<li><a href="clases.html">CLASES</a></li>
-<li><a href="contacto.html">CONTACTO</a></li>
-</ul>
-</div>
-<div>
-<table width="800" border="0" align="center"  class="blanco">
-  <tr>
-    <td width="190">
-      <ul>
-      	<li><input class="entrada" type="text" value="Cl&aacute;sico" readonly="true" onClick="cambiarImag('clasico')"></li>
-        <li><input class="entrada" type="text" value="Contempor&aacute;neo" readonly="true" onClick="cambiarImag('contemporaneo')"></li>
-        <li><input class="entrada" type="text" value="Teatro" readonly="true" onClick="cambiarImag('teatro')"></li>
-        <li><input class="entrada" type="text" value="Hip Hop" readonly="true" onClick="cambiarImag('hiphop')"></li>
-        <li><input class="entrada" type="text" value="Baby Dance" readonly="true" onClick="cambiarImag('baby')"></li>
-        <li><input class="entrada" type="text" value="Contorsi&oacute;n" readonly="true" onClick="cambiarImag('contorsion')"></li>
-      </ul> 
-      </td>
-    <td width="600">
-    	<input class="entrada" type="image" id="campoImg" alt="Imagen" src="img/logo.jpg">
-    </td>
-  </tr>
-</table>
-</div>
-</body>
+  <!-- Body -->
+  <body>
+
+    <!-- Header -->
+    <header id="headerIndex" class="alt">
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="clases.html">Clases</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Fin Header -->
+		<div id="main">
+			<div id="opcion">
+	      <ul id="lista" >
+	      	<li onClick="cambiarImag('clasico')">Cl&aacute;sico</li>
+					<li onClick="cambiarImag('contemporaneo')">Contempor&aacute;neo</li>
+					<li onClick="cambiarImag('teatro')">Teatro</li>
+					<li onClick="cambiarImag('hiphop')">Hip Hop</li>
+					<li onClick="cambiarImag('baby')">Baby Dance</li>
+					<li onClick="cambiarImag('contorsion')">Contorsi&oacute;n</li>
+	      </ul>
+			</div>
+			<div id="imgOpcion">
+			    	<img id="campoImg" alt="Imagen" src="img/logo.jpg"></img>
+			</div>
+			<div id="horario">
+				<table id="horarioTabla">
+          <!-- fila 1 -->
+					<tr>
+						<th>&nbsp;</th>
+						<th>Lunes</th>
+						<th>Martes</th>
+						<th>Mi&eacute;rcoles</th>
+						<th>Jueves</th>
+						<th>Viernes</th>
+					</tr>
+          <!-- fila 2 -->
+					<tr>
+						<td>14 - 15</td>
+						<td id='22'>&nbsp;</td>
+						<td id='23'>&nbsp;</td>
+						<td id='24'>&nbsp;</td>
+						<td id='25'>&nbsp;</td>
+						<td id='26'>&nbsp;</td>
+					</tr>
+          <!-- fila 3 -->
+					<tr>
+						<td>15 - 16</td>
+						<td id='32'>&nbsp;</td>
+						<td id='33'>&nbsp;</td>
+						<td id='34'>&nbsp;</td>
+						<td id='35'>&nbsp;</td>
+						<td id='36'>&nbsp;</td>
+					</tr>
+          <!-- fila 4 -->
+          <tr>
+						<td>16 - 17</td>
+						<td id='42'>&nbsp;</td>
+						<td id='43'>&nbsp;</td>
+						<td id='44'>&nbsp;</td>
+						<td id='45'>&nbsp;</td>
+						<td id='46'>&nbsp;</td>
+					</tr>
+          <!-- fila 5 -->
+          <tr>
+						<td>17 - 18</td>
+						<td id='52'>&nbsp;</td>
+						<td id='53'>&nbsp;</td>
+						<td id='54'>&nbsp;</td>
+						<td id='55'>&nbsp;</td>
+						<td id='56'>&nbsp;</td>
+					</tr>
+          <!-- fila 6 -->
+          <tr>
+						<td>18 - 19</td>
+						<td id='62'>&nbsp;</td>
+						<td id='63'>&nbsp;</td>
+						<td id='64'>&nbsp;</td>
+						<td id='65'>&nbsp;</td>
+						<td id='66'>&nbsp;</td>
+					</tr>
+          <!-- fila 7 -->
+          <tr>
+						<td>19 - 20</td>
+						<td id='72'>&nbsp;</td>
+						<td id='73'>&nbsp;</td>
+						<td id='74'>&nbsp;</td>
+						<td id='75'>&nbsp;</td>
+						<td id='76'>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<h2>by gabi-cg</h2>
+		</footer>
+		<!-- Fin Footer -->
+
+	</body>
 </html>
