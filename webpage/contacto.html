@@ -2,63 +2,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Web Fly-Art</title>
-<link href="css/estilo.css" rel="stylesheet" type="text/css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<style type="text/css">
-<!--
-body {
-background-position:center;
-	background-image: url(img/logo.jpg);
-	background-repeat: no-repeat;
-}
--->
-</style>
-
-<script type="text/javascript" src="js/formulario.js"></script>
+  <title>Web Fly-Art</title>
+  <link rel="stylesheet" href="css/estilo.css" media="screen" charset="utf-8">
+  <script src="js/codigoJS.js" charset="utf-8"></script>
 </head>
 
-<body>
-<div id="barraNav">
-<ul>
-<li><a href="index.html">HOME</a></li>
-<li><a href="clases.html">CLASES</a></li>
-<li><a href="contacto.html">CONTACTO</a></li>
-</ul>
-</div>
+  <!-- Body -->
+  <body>
 
-<div class="formulario">
-<form method="get" onsubmit="mailto:gabriel.c.garcia@gmail.com">
-  <br>
-    <span class="etiqueta">Nombre:</span>
-  <br>
-    <input class="entrada" type="text" name="name">
-  <br>
-    <span class="etiqueta">Email:</span>
-  <br>
-    <input  class="entrada" type="text" name="email">
-  <br>
-  	<label class="etiqueta" for="" >Sexo:
-      Masculino<input type="radio" name="genero" value="masculino"/>
-      Femenino<input type="radio" name="genero" value="femenino"/>
-    </label>
-  <br>
-    <span class="etiqueta">Mensaje:</span>
-  <br>
-    <textarea class="entrada" name="mensaje" rows="7" cols="30"></textarea>
-  <br>
-    <span class="etiqueta">¿Les gust&oacute; la web?</span>
-  <br>
-    <input type="checkbox" name="siGusto" id="siGusto" onClick="etiquetar()"/> 
-    <span class="etiqueta">SI</span>
-    <input type="checkbox" name="noGusto" id="noGusto" onClick="etiquetar()"/>
-    <span class="etiqueta">NO</span>
-  <p id="maso" class="blanco"></p>
-  <br>
-    <input id="submit_button" type="submit" value="Enviar email" />
-</form>
-</div>
-</body>
+    <!-- Header -->
+    <header id="headerIndex" class="alt">
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="clases.html">Clases</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Fin Header -->
 
+	<div id=main>
+		<div id="dataBlock">
+		  <form action="get">
+		    <p>
+					<label for="fname">Nombre</label>
+		    	<input type="text" id="fname" name="name"></input>
+				</p>
+				<p>
+			    <label for="email">Email</label>
+			    <input type="text" id="email" name="email"></input>
+				</p>
+				<p>
+			    <textarea name="comment" id="comment" cols="45" rows="5"></textarea>
+				</p>
+				<p id="enviar">
+		    	<input type="submit" value="Submit">
+				</p>
+		  </form>
+		</div>
+
+		<div id="imgBlock">
+			<img src="img/FlyArt.png" alt="logo">
+		</div>
+	</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<h2>by gabi-cg</h2>
+		</footer>
+		<!-- Fin Footer -->
+
+	</body>
 </html>
