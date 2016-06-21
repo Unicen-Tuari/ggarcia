@@ -1,0 +1,26 @@
+/* CSS Document */
+@charset "utf-8";
+
+/*Cuerpo general para todas las páginas*/
+body {
+	background-color:#9A011F;
+	color: white;
+}
+
+.navbar-default {
+	opacity: 0.6;
+}
+
+footer{
+	padding: 1px 0 1px 0;
+	background-image: url("../img/FlyArt.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #9A011F;
+	color: #aaa;
+	text-align: center;
+}
+
+#horas tr {
+	text-align: center;
+}
