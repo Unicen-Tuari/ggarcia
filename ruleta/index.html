@@ -1,31 +1,63 @@
 <!-- Este documento fué creado por Gabriel García -->
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Les Jeux</title>
-<link href="css/estilo.css" rel="stylesheet" type="text/css">
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Les Jeux</title>
+    <link href="css/estilo.css" rel="stylesheet" type="text/css">
+  </head>
 
-<body>
-<h1>LES JEUX</h1>
-<h2>Ruleta On Line</h2>
-<div class="bloque1">
-  <p>Su Saldo es de $
-    <input class="bloque1.a" name="saldo" type="number" id="saldo" tabindex="1" value="100" readonly input/>
-  </p>
-  <p>Ingrese su número 
-	<input name="numero" type="number" id="numero" tabindex="2" value="" input/>
-  </p>	
-  <p>Ingrese su apuesta
-		<input name="apuesta" type="number" id="apuesta" tabindex="3" input/>
-  </p>
-</div>
-<p>
-  <input name="play" type="button" id="play" value="Jugar !!" tabindex="4" onClick='goPlay()'>
-</p>
-<p class="bloque2" id="nroGanador"></p>
-<p class="bloque3" id="avisoProblema"></p>
-<script type="text/javascript" src="js/codigo.js"></script>
-</body>
+  <body>
+    <h1>LES JEUX</h1>
+    <h2>Ruleta On Line - Parte 2</h2>
+    <div class="bloque1">
+      <p>Su Saldo es de $
+        <input class="bloque1.a" type="number" id="saldo" tabindex="1" readonly input/>
+      </p>
+      <p>Ingrese su apuesta:
+        <ul>
+          <li>
+            <input class ="cant" type="number" id="plenoBet"/>
+            Pleno
+            <input class ="cant" type="number" id="plenoNro" tabindex="2" input/>
+          </li>
+          <li>
+            <input class ="cant" type="number" id="colorBet"/>
+            Color
+            <select class ="cant" id="color">
+              <option value="ROJO">Rojo</option>
+              <option value="NEGRO">Negro</option>
+            </select>
+          </li>
+          <li>
+            <input class ="cant" type="number" id="parBet" />
+            Par
+          </li>
+          <li>
+            <input class ="cant" type="number" id="imparBet"/>
+            Impar
+          </li>
+          <li>
+            <input class ="cant" type="number" id="mayorBet"/>
+            Mayor (6 - 10)
+          </li>
+          <li>
+            <input class ="cant" type="number" id="menorBet"/>
+            Menor (1 - 5)
+          </li>
+        </ul>
+      </p>
+    </div>
+    <input type="button" id="play" value="Jugar !!">
+    <input type="button" id="playCargado" value="Jugar cargado!!">
+    <input type="checkbox" id="revancha">Revancha!</input>
+    <p class="bloque2" id="nroGanador">Nro Ganador</p>
+    <ul id="historial"></ul>
+    <p class="bloque3" id="avisoProblema"></p>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <!-- my JS -->
+    <script src="js/codigo.js"></script>
+  </body>
 </html>

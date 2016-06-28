@@ -15,7 +15,7 @@ h2{
 	text-align:center;
 }
 
-p{
+p, ul{
 	color:#3399CC;
 	font-size:16px;
 }
@@ -24,7 +24,7 @@ p{
 	text-align:left;
 }
 
-.bloque1.a{
+#ganadores, .bloque1.a{
 	color:#999999;
 	font-weight: bold;
 }
@@ -38,5 +38,13 @@ p{
 	color:#FF0000;
 	font-weight: bold;
 	background-color: #000000;
+}
+
+ul{
+	list-style:none;
+}
+
+.cant{
+	width:50px;
 }
 /*</style>*/
