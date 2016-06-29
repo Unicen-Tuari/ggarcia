@@ -2,11 +2,12 @@
 "use strict";
 $(document).ready(function(){
   ajaxLoad("./sections/homeSection.html");
-  $("#home").on("click",function() {ajaxLoad("./sections/homeSection.html")});
-  //$("#clase").on("click",function() {ajaxLoad("./sections/clasesSection.html")});
-  $("#contact").on("click",function() {ajaxLoad("./sections/contactoSection.html")});
-  //$("#rest").on("click",function() {ajaxLoad("./sections/formRestSection.html")});
 })
+
+$("#home").on("click",function() {ajaxLoad("./sections/homeSection.html")});
+//$("#clase").on("click",function() {ajaxLoad("./sections/clasesSection.html")});
+$("#contact").on("click",function() {ajaxLoad("./sections/contactoSection.html")});
+//$("#rest").on("click",function() {ajaxLoad("./sections/formRestSection.html")});
 
 	function ajaxLoad(link) {
 	  $.ajax(
