@@ -1,67 +1,125 @@
 // JavaScript Document
-$(document).ready(function() {
-	// funcion que imprime los horarios de las clases de danzas
-	$("#baby").on("click", function() {
-		$("#horario").html("<h4>Profesora: Laureana</h4><table><tr><td>Lunes</td><td>16 hs - 18 hs</td></tr><tr><td>Mi&eacute;rcoles</td><td>16 hs - 18 hs</td></tr><tr><td>Viernes</td><td>16 hs - 18 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
 
-	$("#clasico").on("click", function() {
-		$("#horario").html("<h4>Profesora: Fernanda</h4><table><tr><td>Martes</td><td>18 hs - 20 hs</td></tr><tr><td>Mi&eacute;rcoles</td><td>18 hs - 19 hs</td></tr><tr><td>Viernes</td><td>18 hs - 20 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
+// funcion que imprime los horarios de las clases de danzas
+$("#baby").on("click", function() {
+	getInformationByItem("57732bfdaf0cbc0300810f6d");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	$("#contemporaneo").on("click", function() {
-		$("#horario").html("<h4>Profesora: Milagros</h4><table><tr><td>Jueves</td><td>16 hs - 18 hs</td></tr><tr><td>Viernes</td><td>19 hs - 21 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
+$("#clasico").on("click", function() {
+	getInformationByItem("57732c0caf0cbc0300810f6e");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	$("#contorsion").on("click", function() {
-		$("#horario").html("<h4>Profesora: Claudia</h4><table><tr><td>Lunes</td><td>19 hs - 22 hs</td></tr><tr><td>Martes</td><td>14 hs - 16 hs</td></tr><tr><td>Viernes</td><td>17 hs - 19 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
+$("#contemporaneo").on("click", function() {
+	getInformationByItem("57732c16af0cbc0300810f6f");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	$("#hiphop").on("click", function() {
-		$("#horario").html("<h4>Profesora: Jacqueline</h4><table><tr><td>Lunes</td><td>16 hs - 18 hs</td></tr><tr><td>Mi&eacute;rcoles</td><td>16 hs - 18 hs</td></tr><tr><td>Viernes</td><td>16 hs - 18 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
+$("#contorsion").on("click", function() {
+	getInformationByItem("57732c24af0cbc0300810f70");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	/*
-	$("#teatro").on("click", function() {
-		$("#horario").html("<h4>Profesor: Sebasti&aacuten</h4><table><tr><td>Jueves</td><td>16 hs - 18 hs</td></tr><tr><td>Viernes</td><td>19 hs - 21 hs</td></tr></table>");
-		$("table").css("font-size", "14px");
-		return false; // Or ev.preventDefault();
-		}
-	);
-	*/
+$("#hiphop").on("click", function() {
+	getInformationByItem("57732c30af0cbc0300810f71");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	$("#teatro").on("click", function(event) {
-	  $.ajax({
-	    url:"http://ggarcia-web.herokuapp.com",
-			/*"http://web-unicen.herokuapp.com/api/html?",*/
-	    method:"GET",
-	    dataType:"html",
-	    success: function(data){
-	      $("#use-ajax").html(data);
-	    },
-	    error: function(){
-	      $("#use-ajax").html("<h1>Error - Request Failed!</h1>");
-	    }
-	  });
-	  $("#use-ajax").html("<h1>Loading...</h1>");
-	  //alert("Hola Mundo!");
-	  event.preventDefault();
-	});
+$("#teatro").on("click", function() {
+	getInformationByItem("57732c3faf0cbc0300810f72");
+	return false; // Or ev.preventDefault();
+	}
+);
 
-	// FIN funcion que imprime los horarios de las clases de danzas
-)}
+// FIN funcion que imprime los horarios de las clases de danzas
+
+//----------------------------------------------------------
+// Código realizado por Nacho,Javi en Tupar 2016
+function getInformationByGroup(){
+  event.preventDefault();
+  var grupo = $("#groupid").val();
+  $.ajax({
+     method: "GET",
+     dataType: 'JSON',
+     url: "http://web-unicen.herokuapp.com/api/group/" + grupo,
+     success: function(resultData){
+       //al ser tipo JSON resultData es un objeto listo para usar
+       var html = "";
+       for (var i = 0; i < resultData.information.length; i++) {
+         html += "Id: " + resultData.information[i]['_id'] + "<br />";
+         html += "Grupo: " + resultData.information[i]['group'] + "<br />";
+         html += "Informacion: " + resultData.information[i]['thing'] + "<br />";
+         html += "--------------------- <br />";
+       }
+       $("#infoGroup").html(html);
+     },
+     error:function(jqxml, status, errorThrown){
+       console.log(errorThrown);
+     }
+  });
+}
+
+function guardarInformacion(){
+  event.preventDefault();
+  var grupo = $("#grupo").val();
+  var informacion = $("#informacion").val();
+  //la estructura que debemos enviar es especifica de cada servicio que usemos
+  //en este caso un hay que enviar un objeto con el numero de grupo y con lo que queramos guardarInformacion
+  //thing puede ser un objeto JSON con tanta información como queramos (en este servicio)
+  var info = {
+      group: grupo,
+      thing: informacion //puede ser un objeto JSON!
+      };
+
+  if (grupo && informacion){
+    $.ajax({
+       method: "POST",
+       dataType: 'JSON',
+       //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
+       data: JSON.stringify(info),
+       contentType: "application/json; charset=utf-8",
+       url: "http://web-unicen.herokuapp.com/api/create",
+       success: function(resultData){
+         $("#guardarAlert").removeClass("alert-danger")
+         $("#guardarAlert").addClass("alert-success")
+         //como le dimos dataType:"JSON" el resultData ya es un objeto
+         //la estructura que devuelve es especifica de cada servicio que usemos
+         $("#guardarAlert").html("Informacion guardada con ID=" + resultData.information._id);
+         console.log(resultData);
+       },
+       error:function(jqxml, status, errorThrown){
+         console.log(errorThrown);
+         $("#guardarAlert").addClass("alert-danger")
+         $("#guardarAlert").html("Error por favor intente mas tarde");
+       }
+    });
+  }
+  else
+  {
+    $("#guardarAlert").addClass("alert-danger")
+    $("#guardarAlert").html("Grupo e Informacion son campos requeridos");
+  }
+}
+
+function getInformationByItem(item){
+  event.preventDefault();
+  $.ajax({
+     method: "GET",
+     dataType: 'JSON',
+     //si la info va en la URL o se pasa por "data" depende del servicio
+     url: "http://web-unicen.herokuapp.com/api/get/" + item,
+     success: function(resultData){
+       $("#infoItem").html(resultData.information['thing']);
+     },
+     error:function(jqxml, status, errorThrown){
+       console.log(errorThrown);
+     }
+
+  });
+}
