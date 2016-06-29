@@ -39,6 +39,13 @@ $("#teatro").on("click", function() {
 
 // FIN funcion que imprime los horarios de las clases de danzas
 
+// posible funcion que borra la fila que se cliquea
+$("table>tr").on("click", function() {
+  $(this).remove();
+	return false; // Or ev.preventDefault();
+	}
+);
+
 //----------------------------------------------------------
 // Código realizado por Nacho,Javi en Tupar 2016
 function getInformationByGroup(){
