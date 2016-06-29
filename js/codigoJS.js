@@ -1,4 +1,29 @@
 // JavaScript Document
+"use strict";
+$(document).ready(function(){
+  ajaxLoad("./sections/homeSection.html");
+  $("#home").on("click",function() {ajaxLoad("./sections/homeSection.html")});
+  //$("#clase").on("click",function() {ajaxLoad("./sections/clasesSection.html")});
+  $("#contact").on("click",function() {ajaxLoad("./sections/contactoSection.html")});
+  //$("#rest").on("click",function() {ajaxLoad("./sections/formRestSection.html")});
+})
+
+	function ajaxLoad(link) {
+	  $.ajax(
+	    {
+	      type:"GET",
+	      url: link,
+	      success: function(data) {
+            $("#containerTest").html(data);
+        },
+	      dataType: "html",
+	      error:function(jqxml, status, errorThrown){
+          $("#containerTest").text("No se pudo cargar la página");
+          console.log(errorThrown);
+        }
+	    }
+	  );
+	}
 
 // funcion que imprime los horarios de las clases de danzas
 $("#baby").on("click", function() {
