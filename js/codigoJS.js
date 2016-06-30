@@ -150,15 +150,16 @@ function guardarInscripcion(){
       contentType: "application/json; charset=utf-8",
       url: "http://web-unicen.herokuapp.com/api/create",
       success: function(resultData){
-        alert("Informacion guardada con ID=" + resultData.information._id);
+        $("#aviso").text("Inscripci&oacuten guardada");
+        $("#aviso").css(text: '#9A011F');
         console.log(resultData);
+        getInscripciones(); // recarga la tabla
       },
       error:function(jqxml, status, errorThrown){
         console.log(errorThrown);
         alert("Error por favor intente mas tarde");
       }
     });
-    getInscripciones(); // recarga la tabla
   }
 }
 
