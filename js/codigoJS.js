@@ -23,7 +23,7 @@ $(document).ready(function(){
 $("#home").on("click",function() {loadRender("./sections/homeSection.html",home)});
 $("#clase").on("click",function() {loadRender("./sections/clasesSection.html",clase)});
 $("#contact").on("click",function() {loadRender("./sections/contactoSection.html",contacto)});
-$("#rest").on("click",function() {loadRender("./sections/inscripcionSection.html"),inscripcion});
+$("#insc").on("click",function() {loadRender("./sections/inscripcionSection.html"),inscripcion});
 
 // fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
 function loadRender(link,solapa) {
