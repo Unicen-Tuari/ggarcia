@@ -39,7 +39,9 @@ function loadRender(link,solapa) {
             break;
           }
           case inscripcion: {
+            alert("llegamos al case");
             getInscripciones(); //muestro info en tabla
+            alert("pasamos las inscripciones");
             $("#saveInscripcion").on("click",function() {guardarInscripcion()});
             break;
           }
@@ -91,6 +93,7 @@ function setFuncionalidadClases() {
 
 // fn que obtiene los datos del servicio REST
 function getInscripciones() {
+  alert("entramos a funcion de getInscripciones");
   event.preventDefault();
   var grupo = 9;
   $.ajax({
@@ -98,6 +101,7 @@ function getInscripciones() {
      dataType: 'JSON',
      url: "http://web-unicen.herokuapp.com/api/group/" + grupo,
      success: function(infoRest){
+       alert("cargaremos la tabla");
        cargarTablaInsc(infoRest);
      },
      error:function(jqxml, status, errorThrown){
@@ -116,6 +120,7 @@ function cargarTablaInsc(infoRest) {
     html += '<td><input class="btn eliminar" type="button" value="'+infoRest.information[i]['_id'] +'"></input>'
     html += '</tr>';
   }
+  alert("table" + html);
   $("#tablaInsc").html(html);
   /*var botonesEliminar = $(".eliminar");
   for (var i = 0; i < botonesEliminar.length; i++) {
