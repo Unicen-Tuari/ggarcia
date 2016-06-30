@@ -150,8 +150,9 @@ function guardarInscripcion(){
       contentType: "application/json; charset=utf-8",
       url: "http://web-unicen.herokuapp.com/api/create",
       success: function(resultData){
-        $("#aviso").text("Inscripci&oacuten guardada");
-        $("#aviso").css(text: '#9A011F');
+        $("#guardar").html("Inscripci&oacuten guardada");
+        $("#guardar").removeClass("alert-danger");
+        $("#guardar").addClass("alert-success");
         console.log(resultData);
         getInscripciones(); // recarga la tabla
       },
