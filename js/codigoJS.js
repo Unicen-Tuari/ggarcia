@@ -34,12 +34,15 @@ function loadRender(link,solapa) {
       success: function(data) {
         $("#partialRender").html(data);
         switch(solapa) { // debo agregar funcionalidad a las páginas que lo necesitan
-          case clase:
+          case clase: {
             setFuncionalidadClases();
             break;
-          case inscripcion:
-            setFuncionalidadInscripcion();
+          }
+          case inscripcion: {
+            getInscripciones(); //muestro info en tabla
+            $("#saveInscripcion").on("click",function() {guardarInscripcion()});
             break;
+          }
         }
       },
       dataType: "html",
@@ -86,10 +89,6 @@ function setFuncionalidadClases() {
 
 //----------------------------------------------------------
 
-function setFuncionalidadInscripcion() {
-  $("#saveInscripcion").on("click",function() {guardarInscripcion()});
-}
-
 // fn que obtiene los datos del servicio REST
 function getInscripciones() {
   event.preventDefault();
@@ -113,15 +112,15 @@ function cargarTablaInsc(infoRest) {
     html += '<tr>';
     html += '<td>'+infoRest.information[i]['thing'].clase+'</td>';
     html += '<td>'+infoRest.information[i]['thing'].nombre+'</td>';
-    html += '<td>$'+infoRest.information[i]['thing'].email+'</td>';
+    html += '<td>'+infoRest.information[i]['thing'].email+'</td>';
     html += '<td><input class="btn eliminar" type="button" value="'+infoRest.information[i]['_id'] +'"></input>'
     html += '</tr>';
   }
   $("#tablaInsc").html(html);
-  var botonesEliminar = $(".eliminar");
+  /*var botonesEliminar = $(".eliminar");
   for (var i = 0; i < botonesEliminar.length; i++) {
     asignarBtnEliminar(i, resultData.information[i]['_id']);
-  }
+  }*/
 }
 
 function guardarInscripcion(){
