@@ -113,14 +113,14 @@ function cargarTablaInsc(infoRest) {
     html += '<td>'+infoRest.information[i]['thing'].clase+'</td>';
     html += '<td>'+infoRest.information[i]['thing'].nombre+'</td>';
     html += '<td>'+infoRest.information[i]['thing'].email+'</td>';
-    html += '<td><input class="btn eliminar" type="button" value="'+infoRest.information[i]['_id'] +'">Eliminar</input>'
+    html += '<td><input class="btn eliminar" type="button" value="eliminar"></input></td>'
     html += '</tr>';
   }
   $("#tablaInsc").html(html);
-  /*var botonesEliminar = $(".eliminar");
+  var botonesEliminar = $(".eliminar");
   for (var i = 0; i < botonesEliminar.length; i++) {
-    asignarBtnEliminar(i, resultData.information[i]['_id']);
-  }*/
+    $($(".eliminar")[i]).on("click",deleteInscripcion(resultData.information[i]['_id']));
+  }
 }
 
 function guardarInscripcion(){
@@ -155,31 +155,13 @@ function guardarInscripcion(){
   }
 }
 
-function getInformationByItem(item){
-  event.preventDefault();
+function deleteInscripcion(item) {
   $.ajax({
-     method: "GET",
-     dataType: 'JSON',
-     //si la info va en la URL o se pasa por "data" depende del servicio
-     url: "http://web-unicen.herokuapp.com/api/get/" + item,
-     success: function(resultData){
-       $("#infoItem").html(resultData.information['thing']);
-     },
-     error:function(jqxml, status, errorThrown){
-       console.log(errorThrown);
-     }
-
-  });
-}
-
-function deleteInformationByItem(item) {
-  var id=item;
-  $.ajax({
-    url:"http://web-unicen.herokuapp.com/api/delete/" + id,
+    url:"http://web-unicen.herokuapp.com/api/delete/" + item,
     method:"DELETE",
     success: function(resultData){
       console.log(resultData);
-      getInformationByGroup();
+      getInscripciones(); // recarga la tabla
     },
     error:function(jqxml, status, errorThrown){
       alert('Error!');
