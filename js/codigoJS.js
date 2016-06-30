@@ -16,7 +16,7 @@ const render = "render";
 
 // al terminar de cargar el html principal, cargo partial render de home
 $(document).ready(function(){
-  ajaxLoad("./sections/homeSection.html");
+  loadRender("./sections/homeSection.html");
 })
 
 // cada vez que elijo botón de navigation bar se carga su correspondiente render
