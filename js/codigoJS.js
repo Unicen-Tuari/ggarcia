@@ -100,7 +100,7 @@ function getInscripciones() {
      url: "http://web-unicen.herokuapp.com/api/group/" + grupo,
      success: function(infoRest){
        cargarTablaInsc(infoRest);
-     }
+     },
      error:function(jqxml, status, errorThrown){
        console.log(errorThrown);
      }
