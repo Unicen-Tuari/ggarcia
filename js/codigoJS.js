@@ -113,14 +113,20 @@ function cargarTablaInsc(infoRest) {
     html += '<td>'+infoRest.information[i]['thing'].clase+'</td>';
     html += '<td>'+infoRest.information[i]['thing'].nombre+'</td>';
     html += '<td>'+infoRest.information[i]['thing'].email+'</td>';
-    html += '<td><input class="btn eliminar" type="button" value="eliminar"></input></td>'
+    html += '<td><input class="btn btn-default borrar" type="button" value="eliminar"></input></td>'
     html += '</tr>';
   }
   $("#tablaInsc").html(html);
-  var botonesEliminar = $(".btn eliminar");
+  var botonesEliminar = $(".borrar");
   for (var i = 0; i < botonesEliminar.length; i++) {
-    $(botonesEliminar[i]).on("click",function{
-      deleteInscripcion(infoRest.information[i]['_id'])});
+    asignarEliminar(i, infoRest.information[i]['_id']);
+  }
+}
+
+function asignarEliminar(i, id){
+  var boton = $(".borrar")[i];
+  boton.onclick = function(){
+    deleteInscripcion(id);
   }
 }
 
