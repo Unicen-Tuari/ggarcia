@@ -26,8 +26,12 @@ footer{
 	text-align: center;
 }
 
-#infoGroup {
+#formularioInsc, #infoInscripcion, #listaInscriptos {
 	color: #9A011F;
+}
+
+#tablaInsc {
+	color: black;
 }
 
 .insideH1 {
