@@ -1,22 +1,46 @@
 // JavaScript Document
 "use strict";
+
+// constantes globales: nombres de los botones de navegacion
+/*const baby = "baby";
+const clasico = "clasico";
+const contemporaneo = "contemporaneo";
+const contorsion = "contorsion";
+const hiphop = "hiphop";
+const teatro = "teatro";
+*/
+const home = "home";
+const clase = "clase";
+const contacto = "contacto";
+const render = "render";
+
+// al terminar de cargar el html principal, cargo partial render de home
 $(document).ready(function(){
   ajaxLoad("./sections/homeSection.html");
 })
 
-$("#home").on("click",function() {ajaxLoad("./sections/homeSection.html")});
-$("#clase").on("click",function() {ajaxLoad("./sections/clasesSection.html")});
-$("#contact").on("click",function() {ajaxLoad("./sections/contactoSection.html")});
-$("#rest").on("click",function() {ajaxLoad("./sections/formRestSection.html")});
+// cada vez que elijo botón de navigation bar se carga su correspondiente render
+$("#home").on("click",function() {loadRender("./sections/homeSection.html",home)});
+$("#clase").on("click",function() {loadRender("./sections/clasesSection.html",clase)});
+$("#contact").on("click",function() {loadRender("./sections/contactoSection.html",contacto)});
+$("#rest").on("click",function() {loadRender("./sections/formRestSection.html"),render});
 
-// fn Partial Render que obtiene html a cargar en un div
-function ajaxLoad(link) {
+// fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
+function loadRender(link,solapa) {
   $.ajax(
     {
       type:"GET",
       url: link,
       success: function(data) {
-          $("#containerTest").html(data);
+        $("#containerTest").html(data);
+        switch(solapa) {
+          case clase:
+            setFuncionalidadClases();
+            break;
+          case render:
+            setFuncionalidadRender();
+            break;
+        }
       },
       dataType: "html",
       error:function(jqxml, status, errorThrown){
@@ -28,54 +52,48 @@ function ajaxLoad(link) {
 }
 
 // funcion que imprime los horarios de las clases de danzas
-$("#baby").on("click", function() {
-	getInformationByItem("57732bfdaf0cbc0300810f6d");
-	return false; // Or ev.preventDefault();
-	}
-);
+function setFuncionalidadClases() {
+  $("#baby").on("click", function(ev) {
+  	getInformationByItem("57732bfdaf0cbc0300810f6d");
+  	ev.preventDefault();
+  	}
+  );
 
-$("#clasico").on("click", function() {
-	getInformationByItem("57732c0caf0cbc0300810f6e");
-	return false; // Or ev.preventDefault();
-	}
-);
+  $("#clasico").on("click", function(ev) {
+  	getInformationByItem("57732c0caf0cbc0300810f6e");
+  	ev.preventDefault();
+  	}
+  );
 
-$("#contemporaneo").on("click", function() {
-	getInformationByItem("57732c16af0cbc0300810f6f");
-	return false; // Or ev.preventDefault();
-	}
-);
+  $("#contemporaneo").on("click", function(ev) {
+  	getInformationByItem("57732c16af0cbc0300810f6f");
+  	 ev.preventDefault();
+  	}
+  );
 
-$("#contorsion").on("click", function() {
-	getInformationByItem("57732c24af0cbc0300810f70");
-	return false; // Or ev.preventDefault();
-	}
-);
+  $("#contorsion").on("click", function(ev) {
+  	getInformationByItem("57732c24af0cbc0300810f70");
+  	ev.preventDefault();
+  	}
+  );
 
-$("#hiphop").on("click", function() {
-	getInformationByItem("57732c30af0cbc0300810f71");
-	return false; // Or ev.preventDefault();
-	}
-);
+  $("#hiphop").on("click", function(ev) {
+  	getInformationByItem("57732c30af0cbc0300810f71");
+  	ev.preventDefault();
+  	}
+  );
 
-$("#teatro").on("click", function() {
-	getInformationByItem("57732c3faf0cbc0300810f72");
-	return false; // Or ev.preventDefault();
-	}
-);
-
-// FIN funcion que imprime los horarios de las clases de danzas
-
-// posible funcion que borra la fila que se cliquea
-$("table>tr").on("click", function() {
-  $(this).remove();
-	return false; // Or ev.preventDefault();
-	}
-);
+  $("#teatro").on("click", function(ev) {
+  	getInformationByItem("57732c3faf0cbc0300810f72");
+  	ev.preventDefault();
+  	}
+  );
+}
 
 //----------------------------------------------------------
+function setFuncionalidadClases() {
 // Código realizado por Nacho,Javi en Tupar 2016
-function getInformationByGroup(){
+function getInformationByGroup() {
   event.preventDefault();
   var grupo = $("#groupid").val();
   $.ajax({
@@ -156,4 +174,23 @@ function getInformationByItem(item){
      }
 
   });
+}
+
+function deleteInformationByItem(item) {
+  var id=item;
+  $.ajax({
+    url:"http://web-unicen.herokuapp.com/api/delete/" + id,
+    method:"DELETE",
+    success: function(resultData){
+      console.log(resultData);
+      getInformationByGroup();
+    },
+    error:function(jqxml, status, errorThrown){
+      alert('Error!');
+      console.log(errorThrown);
+    }
+  });
+}
+
+
 }
