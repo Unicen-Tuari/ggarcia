@@ -23,7 +23,7 @@ $(document).ready(function(){
 $("#home").on("click",function() {loadRender("./sections/homeSection.html",home)});
 $("#clase").on("click",function() {loadRender("./sections/clasesSection.html",clase)});
 $("#contact").on("click",function() {loadRender("./sections/contactoSection.html",contacto)});
-$("#insc").on("click",function() {loadRender("./sections/inscripcionSection.html"),inscripcion});
+$("#insc").on("click",function() {loadRender("./sections/inscripcionSection.html",inscripcion)});
 
 // fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
 function loadRender(link,solapa) {
@@ -31,6 +31,7 @@ function loadRender(link,solapa) {
     {
       type:"GET",
       url: link,
+      dataType: "html",
       success: function(data) {
         $("#partialRender").html(data);
         switch(solapa) { // debo agregar funcionalidad a las páginas que lo necesitan
@@ -47,7 +48,6 @@ function loadRender(link,solapa) {
           }
         }
       },
-      dataType: "html",
       error:function(jqxml, status, errorThrown){
         $("#partialRender").text("No se pudo cargar la página");
         console.log(errorThrown);
