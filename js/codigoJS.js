@@ -12,7 +12,7 @@ const teatro = "teatro";
 const home = "home";
 const clase = "clase";
 const contacto = "contacto";
-const render = "render";
+const inscripcion = "inscripcion";
 
 // al terminar de cargar el html principal, cargo partial render de home
 $(document).ready(function(){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 $("#home").on("click",function() {loadRender("./sections/homeSection.html",home)});
 $("#clase").on("click",function() {loadRender("./sections/clasesSection.html",clase)});
 $("#contact").on("click",function() {loadRender("./sections/contactoSection.html",contacto)});
-$("#rest").on("click",function() {loadRender("./sections/inscripcionSection.html"),render});
+$("#rest").on("click",function() {loadRender("./sections/inscripcionSection.html"),inscripcion});
 
 // fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
 function loadRender(link,solapa) {
@@ -37,7 +37,7 @@ function loadRender(link,solapa) {
           case clase:
             setFuncionalidadClases();
             break;
-          case render:
+          case inscripcion:
             setFuncionalidadInscripcion();
             break;
         }
@@ -54,32 +54,32 @@ function loadRender(link,solapa) {
 // funcion que imprime los horarios de las clases de danzas
 function setFuncionalidadClases() {
   $("#baby").on("click", function(ev) {
-  	getInformationByItem("57732bfdaf0cbc0300810f6d");
+  	// aca va la tabla o lo que le quiera poner al lado de la imagen
   	ev.preventDefault();
   });
 
   $("#clasico").on("click", function(ev) {
-  	getInformationByItem("57732c0caf0cbc0300810f6e");
+    // aca va la tabla o lo que le quiera poner al lado de la imagen
   	ev.preventDefault();
   });
 
   $("#contemporaneo").on("click", function(ev) {
-  	getInformationByItem("57732c16af0cbc0300810f6f");
+  	// aca va la tabla o lo que le quiera poner al lado de la imagen
   	 ev.preventDefault();
   });
 
   $("#contorsion").on("click", function(ev) {
-  	getInformationByItem("57732c24af0cbc0300810f70");
+  	// aca va la tabla o lo que le quiera poner al lado de la imagen
   	ev.preventDefault();
   });
 
   $("#hiphop").on("click", function(ev) {
-  	getInformationByItem("57732c30af0cbc0300810f71");
+  	// aca va la tabla o lo que le quiera poner al lado de la imagen
   	ev.preventDefault();
   });
 
   $("#teatro").on("click", function(ev) {
-  	getInformationByItem("57732c3faf0cbc0300810f72");
+  	// aca va la tabla o lo que le quiera poner al lado de la imagen
   	ev.preventDefault();
   });
 }
@@ -87,73 +87,73 @@ function setFuncionalidadClases() {
 //----------------------------------------------------------
 
 function setFuncionalidadInscripcion() {
-
+  $("#saveInscripcion").on("click",function() {guardarInscripcion()});
 }
 
-// Código realizado por Nacho,Javi en Tupar 2016
-function getInformationByGroup() {
+// fn que obtiene los datos del servicio REST
+function getInscripciones() {
   event.preventDefault();
-  var grupo = $("#groupid").val();
+  var grupo = 9;
   $.ajax({
      method: "GET",
      dataType: 'JSON',
      url: "http://web-unicen.herokuapp.com/api/group/" + grupo,
-     success: function(resultData){
-       //al ser tipo JSON resultData es un objeto listo para usar
-       var html = "";
-       for (var i = 0; i < resultData.information.length; i++) {
-         html += "Id: " + resultData.information[i]['_id'] + "<br />";
-         html += "Grupo: " + resultData.information[i]['group'] + "<br />";
-         html += "Informacion: " + resultData.information[i]['thing'] + "<br />";
-         html += "--------------------- <br />";
-       }
-       $("#infoGroup").html(html);
-     },
+     success: function(infoRest){
+       cargarTablaInsc(infoRest);
+     }
      error:function(jqxml, status, errorThrown){
        console.log(errorThrown);
      }
   });
 }
 
-function guardarInformacion(){
-  event.preventDefault();
-  var grupo = $("#grupo").val();
-  var informacion = $("#informacion").val();
-  //la estructura que debemos enviar es especifica de cada servicio que usemos
-  //en este caso un hay que enviar un objeto con el numero de grupo y con lo que queramos guardarInformacion
-  //thing puede ser un objeto JSON con tanta información como queramos (en este servicio)
-  var info = {
-      group: grupo,
-      thing: informacion //puede ser un objeto JSON!
-      };
+function cargarTablaInsc(infoRest) {
+  var html = "";
+  for (var i = 0; i < infoRest.information.length; i++) {
+    html += '<tr>';
+    html += '<td>'+infoRest.information[i]['thing'].clase+'</td>';
+    html += '<td>'+infoRest.information[i]['thing'].nombre+'</td>';
+    html += '<td>$'+infoRest.information[i]['thing'].email+'</td>';
+    html += '<td><input class="btn eliminar" type="button" value="'+infoRest.information[i]['_id'] +'"></input>'
+    html += '</tr>';
+  }
+  $("#tablaInsc").html(html);
+  var botonesEliminar = $(".eliminar");
+  for (var i = 0; i < botonesEliminar.length; i++) {
+    asignarBtnEliminar(i, resultData.information[i]['_id']);
+  }
+}
 
+function guardarInscripcion(){
+  event.preventDefault();
+  var grupo = 9;
+  var informacion = {
+    clase: $("#selectClase").val(),
+    nombre: $("#alumno").val(),
+    email: $("#email").val()
+  };
+  var info = {
+    group: grupo,
+    thing: informacion
+  };
   if (grupo && informacion){
     $.ajax({
-       method: "POST",
-       dataType: 'JSON',
-       //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
-       data: JSON.stringify(info),
-       contentType: "application/json; charset=utf-8",
-       url: "http://web-unicen.herokuapp.com/api/create",
-       success: function(resultData){
-         $("#guardarAlert").removeClass("alert-danger")
-         $("#guardarAlert").addClass("alert-success")
-         //como le dimos dataType:"JSON" el resultData ya es un objeto
-         //la estructura que devuelve es especifica de cada servicio que usemos
-         $("#guardarAlert").html("Informacion guardada con ID=" + resultData.information._id);
-         console.log(resultData);
-       },
-       error:function(jqxml, status, errorThrown){
-         console.log(errorThrown);
-         $("#guardarAlert").addClass("alert-danger")
-         $("#guardarAlert").html("Error por favor intente mas tarde");
-       }
+      method: "POST",
+      dataType: 'JSON',
+      data: JSON.stringify(info),
+      contentType: "application/json; charset=utf-8",
+      url: "http://web-unicen.herokuapp.com/api/create",
+      success: function(resultData){
+        alert("Informacion guardada con ID=" + resultData.information._id);
+        console.log(resultData);
+      },
+      error:function(jqxml, status, errorThrown){
+        console.log(errorThrown);
+        alert("Error por favor intente mas tarde");
+      }
     });
-  }
-  else
-  {
-    $("#guardarAlert").addClass("alert-danger")
-    $("#guardarAlert").html("Grupo e Informacion son campos requeridos");
+  } else {
+    alert("Grupo e Informacion son campos requeridos");
   }
 }
 
@@ -173,19 +173,6 @@ function getInformationByItem(item){
 
   });
 }
-
-$("#home").on("click",function() {
-  deleteInformationByItem("57731686af0cbc0300810ef8");
-deleteInformationByItem("577316faaf0cbc0300810efa");
-deleteInformationByItem("57731709af0cbc0300810efb");
-deleteInformationByItem("577319ffaf0cbc0300810f0e");
-deleteInformationByItem("57732bfdaf0cbc0300810f6d");
-deleteInformationByItem("57732c0caf0cbc0300810f6e");
-deleteInformationByItem("57732c16af0cbc0300810f6f");
-deleteInformationByItem("57732c24af0cbc0300810f70");
-deleteInformationByItem("57732c30af0cbc0300810f71");
-deleteInformationByItem("57732c3faf0cbc0300810f72");
-});
 
 function deleteInformationByItem(item) {
   var id=item;
