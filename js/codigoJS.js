@@ -23,7 +23,7 @@ $(document).ready(function(){
 $("#home").on("click",function() {loadRender("./sections/homeSection.html",home)});
 $("#clase").on("click",function() {loadRender("./sections/clasesSection.html",clase)});
 $("#contact").on("click",function() {loadRender("./sections/contactoSection.html",contacto)});
-$("#rest").on("click",function() {loadRender("./sections/formRestSection.html"),render});
+$("#rest").on("click",function() {loadRender("./sections/inscripcionSection.html"),render});
 
 // fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
 function loadRender(link,solapa) {
@@ -32,19 +32,19 @@ function loadRender(link,solapa) {
       type:"GET",
       url: link,
       success: function(data) {
-        $("#containerTest").html(data);
-        switch(solapa) {
+        $("#partialRender").html(data);
+        switch(solapa) { // debo agregar funcionalidad a las páginas que lo necesitan
           case clase:
             setFuncionalidadClases();
             break;
           case render:
-            setFuncionalidadRender();
+            setFuncionalidadInscripcion();
             break;
         }
       },
       dataType: "html",
       error:function(jqxml, status, errorThrown){
-        $("#containerTest").text("No se pudo cargar la página");
+        $("#partialRender").text("No se pudo cargar la página");
         console.log(errorThrown);
       }
     }
@@ -56,42 +56,40 @@ function setFuncionalidadClases() {
   $("#baby").on("click", function(ev) {
   	getInformationByItem("57732bfdaf0cbc0300810f6d");
   	ev.preventDefault();
-  	}
-  );
+  });
 
   $("#clasico").on("click", function(ev) {
   	getInformationByItem("57732c0caf0cbc0300810f6e");
   	ev.preventDefault();
-  	}
-  );
+  });
 
   $("#contemporaneo").on("click", function(ev) {
   	getInformationByItem("57732c16af0cbc0300810f6f");
   	 ev.preventDefault();
-  	}
-  );
+  });
 
   $("#contorsion").on("click", function(ev) {
   	getInformationByItem("57732c24af0cbc0300810f70");
   	ev.preventDefault();
-  	}
-  );
+  });
 
   $("#hiphop").on("click", function(ev) {
   	getInformationByItem("57732c30af0cbc0300810f71");
   	ev.preventDefault();
-  	}
-  );
+  });
 
   $("#teatro").on("click", function(ev) {
   	getInformationByItem("57732c3faf0cbc0300810f72");
   	ev.preventDefault();
-  	}
-  );
+  });
 }
 
 //----------------------------------------------------------
-function setFuncionalidadClases() {
+
+function setFuncionalidadInscripcion() {
+
+}
+
 // Código realizado por Nacho,Javi en Tupar 2016
 function getInformationByGroup() {
   event.preventDefault();
@@ -176,6 +174,19 @@ function getInformationByItem(item){
   });
 }
 
+$("#home").on("click",function() {
+  deleteInformationByItem("57731686af0cbc0300810ef8");
+deleteInformationByItem("577316faaf0cbc0300810efa");
+deleteInformationByItem("57731709af0cbc0300810efb");
+deleteInformationByItem("577319ffaf0cbc0300810f0e");
+deleteInformationByItem("57732bfdaf0cbc0300810f6d");
+deleteInformationByItem("57732c0caf0cbc0300810f6e");
+deleteInformationByItem("57732c16af0cbc0300810f6f");
+deleteInformationByItem("57732c24af0cbc0300810f70");
+deleteInformationByItem("57732c30af0cbc0300810f71");
+deleteInformationByItem("57732c3faf0cbc0300810f72");
+});
+
 function deleteInformationByItem(item) {
   var id=item;
   $.ajax({
@@ -190,7 +201,4 @@ function deleteInformationByItem(item) {
       console.log(errorThrown);
     }
   });
-}
-
-
 }
