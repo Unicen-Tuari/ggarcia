@@ -119,7 +119,7 @@ function cargarTablaInsc(infoRest) {
   $("#tablaInsc").html(html);
   var botonesEliminar = $(".eliminar");
   for (var i = 0; i < botonesEliminar.length; i++) {
-    $($(".eliminar")[i]).on("click",deleteInscripcion(infoRest.information[i]['_id']));
+    $($(".eliminar")[i]).on("click",function{deleteInscripcion(infoRest.information[i]['_id'])});
   }
 }
 
