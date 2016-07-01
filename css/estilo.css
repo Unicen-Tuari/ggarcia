@@ -3,8 +3,12 @@
 
 /*Cuerpo general para todas las páginas*/
 body {
-	background-color:#9A011F;
 	color: white;
+	background-image: url("../img/FlyArt.png");
+	background-size:100%;
+	background-position: 5px 30px;
+	background-repeat: no-repeat;
+	background-color: #9A011F;
 }
 
 .navbar-default {
@@ -13,22 +17,9 @@ body {
 
 footer{
 	padding: 1px 0 1px 0;
-	background-image: url("../img/FlyArt.png");
-	background-size:cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-color: #9A011F;
 	color: #aaa;
 	text-align: center;
 }
-
-#horas tr {
-	text-align: center;
-}
-/*
-#formularioInsc, #infoInscripcion, #listaInscriptos {
-	color: #9A011F;
-}*/
 
 #tablaInsc {
 	color: black;
