@@ -54,34 +54,23 @@ function loadRender(link,solapa) {
 
 // fn que setea la funcionalidad de los botones de cada clase
 function setFuncionalidadClases() {
-  $("#baby").on("click", function(ev) {
-  	loadHorarios("./horarios/hBaby.html");
-  	ev.preventDefault();
+  console.log("entramo a fn de clases");
+  $("#baby").on("click", function() {loadHorarios("./horarios/hBaby.html");
   });
 
-  $("#clasico").on("click", function(ev) {
-    loadHorarios("./horarios/hClasico.html");
-  	ev.preventDefault();
+  $("#clasico").on("click", function() {loadHorarios("./horarios/hClasico.html");
   });
 
-  $("#contemporaneo").on("click", function(ev) {
-  	loadHorarios("./horarios/hContemporaneo.html");
-  	 ev.preventDefault();
+  $("#contemporaneo").on("click", function() {loadHorarios("./horarios/hContemporaneo.html");
   });
 
-  $("#contorsion").on("click", function(ev) {
-  	loadHorarios("./horarios/hContorsion.html");
-  	ev.preventDefault();
+  $("#contorsion").on("click", function() {loadHorarios("./horarios/hContorsion.html");
   });
 
-  $("#hiphop").on("click", function(ev) {
-  	loadHorarios("./horarios/hHiphop.html");
-  	ev.preventDefault();
+  $("#hiphop").on("click", function() {loadHorarios("./horarios/hHiphop.html");
   });
 
-  $("#teatro").on("click", function(ev) {
-  	loadHorarios("./horarios/hTeatro.html");
-  	ev.preventDefault();
+  $("#teatro").on("click", function() {loadHorarios("./horarios/hTeatro.html");
   });
 }
 
