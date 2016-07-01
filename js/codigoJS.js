@@ -27,8 +27,7 @@ $("#insc").on("click",function() {loadRender("./sections/inscripcionSection.html
 
 // fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
 function loadRender(link,solapa) {
-  $.ajax(
-    {
+  $.ajax({
       type:"GET",
       url: link,
       dataType: "html",
@@ -50,41 +49,56 @@ function loadRender(link,solapa) {
         $("#partialRender").text("No se pudo cargar la página");
         console.log(errorThrown);
       }
-    }
-  );
+    });
 }
 
-// funcion que imprime los horarios de las clases de danzas
+// fn que setea la funcionalidad de los botones de cada clase
 function setFuncionalidadClases() {
   $("#baby").on("click", function(ev) {
-  	// aca va la tabla o lo que le quiera poner al lado de la imagen
+  	loadHorarios("./horarios/hBaby.html");
   	ev.preventDefault();
   });
 
   $("#clasico").on("click", function(ev) {
-    // aca va la tabla o lo que le quiera poner al lado de la imagen
+    loadHorarios("./horarios/hClasico.html");
   	ev.preventDefault();
   });
 
   $("#contemporaneo").on("click", function(ev) {
-  	// aca va la tabla o lo que le quiera poner al lado de la imagen
+  	loadHorarios("./horarios/hContemporaneo.html");
   	 ev.preventDefault();
   });
 
   $("#contorsion").on("click", function(ev) {
-  	// aca va la tabla o lo que le quiera poner al lado de la imagen
+  	loadHorarios("./horarios/hContorsion.html");
   	ev.preventDefault();
   });
 
   $("#hiphop").on("click", function(ev) {
-  	// aca va la tabla o lo que le quiera poner al lado de la imagen
+  	loadHorarios("./horarios/hHiphop.html");
   	ev.preventDefault();
   });
 
   $("#teatro").on("click", function(ev) {
-  	// aca va la tabla o lo que le quiera poner al lado de la imagen
+  	loadHorarios("./horarios/hTeatro.html");
   	ev.preventDefault();
   });
+}
+
+// fn Partial Render que obtiene html a cargar en un div agregando funcionalidad
+function loadHorarios(link) {
+  $.ajax({
+      type:"GET",
+      url: link,
+      dataType: "html",
+      success: function(data) {
+        $("#infoItem").html(data);
+      },
+      error:function(jqxml, status, errorThrown){
+        $("#infoItem").text("No se pudo cargar la página");
+        console.log(errorThrown);
+      }
+    });
 }
 
 //----------------------------------------------------------
@@ -106,6 +120,7 @@ function getInscripciones() {
   });
 }
 
+// fn que carga los datos de servicio REST en una tabla
 function cargarTablaInsc(infoRest) {
   var html = "";
   for (var i = 0; i < infoRest.information.length; i++) {
@@ -123,6 +138,7 @@ function cargarTablaInsc(infoRest) {
   }
 }
 
+//fn que asigna a cada boton eliminar el hash del item REST
 function asignarEliminar(i, id){
   var boton = $(".borrar")[i];
   boton.onclick = function(){
@@ -130,6 +146,7 @@ function asignarEliminar(i, id){
   }
 }
 
+// fn que guarda objeto JSON en servicio REST
 function guardarInscripcion(){
   event.preventDefault();
   var grupo = 9;
@@ -170,7 +187,7 @@ function deleteInscripcion(item) {
       getInscripciones(); // recarga la tabla
     },
     error:function(jqxml, status, errorThrown){
-      alert('Error!');
+      alert('Error! - ver log en consola');
       console.log(errorThrown);
     }
   });
