@@ -10,54 +10,68 @@
   <body>
     <h1>LES JEUX</h1>
     <h2>Ruleta On Line - Parte 2</h2>
+
     <div class="bloque1">
-      <p>Su Saldo es de $
-        <input class="bloque1.a" type="number" id="saldo" tabindex="1" readonly input/>
-      </p>
-      <p>Ingrese su apuesta:
+      <h3>Su Saldo es de $ <span id="saldo"></span></h3>
+      <p>Costo de apuesta $ <span id="costoAp"></span></p>
+
+      <div class="betContainer">
+        <p>Ingrese su apuesta:</p>
         <ul>
-          <li>
-            <input class ="cant" type="number" id="plenoBet"/>
-            Pleno
-            <input class ="cant" type="number" id="plenoNro" tabindex="2" input/>
-          </li>
-          <li>
-            <input class ="cant" type="number" id="colorBet"/>
-            Color
-            <select class ="cant" id="color">
-              <option value="ROJO">Rojo</option>
-              <option value="NEGRO">Negro</option>
-            </select>
-          </li>
-          <li>
-            <input class ="cant" type="number" id="parBet" />
-            Par
-          </li>
-          <li>
-            <input class ="cant" type="number" id="imparBet"/>
-            Impar
-          </li>
-          <li>
-            <input class ="cant" type="number" id="mayorBet"/>
-            Mayor (6 - 10)
-          </li>
-          <li>
-            <input class ="cant" type="number" id="menorBet"/>
-            Menor (1 - 5)
-          </li>
+          <li><input type="checkbox" id="pleno"/> Pleno</li>
+          <li><input type="checkbox" id="color"/> Color</li>
+          <li><input type="checkbox" id="par"/> N&uacute;mero Par</li>
+          <li><input type="checkbox" id="impar"/> N&uacute;mero Impar</li>
+          <li><input type="checkbox" id="mayor"/> N&uacute;mero Mayor (6 - 10)</li>
+          <li><input type="checkbox" id="menor"/> N&uacute;mero Menor (1 - 5)</li>
         </ul>
-      </p>
+      </div>
+
+      <div class="betTable">
+        <table align="center">
+          <tr>
+            <td colspan="3" id="cero"><input type="button" value="0"/></td>
+          </tr>
+          <tr>
+            <td class="rojo"><input type="button" value="1"/></td>
+            <td class="negro"><input type="button" value="2"/></td>
+            <td class="rojo"><input type="button" value="3"/></td>
+          </tr>
+          <tr>
+            <td class="negro"><input type="button" value="4"/></td>
+            <td class="rojo"><input type="button" value="5"/></td>
+            <td class="rojo"><input type="button" value="6"/></td>
+          </tr>
+          <tr>
+            <td class="negro"><input type="button" value="7"/></td>
+            <td class="rojo"><input type="button" value="8"/></td>
+            <td class="negro"><input type="button" value="9"/></td>
+          </tr>
+          <tr>
+            <td class="rojo" id="redCell"><input type="button" value="ROJO"/></td>
+            <td class="negro"><input type="button" value="10"/></td>
+            <td class="negro" id="blackCell"><input type="button" value="NEGRO"/></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="betList">
+        <ul id="listado"></ul>
+      </div>
+
     </div>
-    <input type="button" id="play" value="Jugar !!">
-    <input type="button" id="playCargado" value="Jugar cargado!!">
-    <input type="checkbox" id="revancha">Revancha!</input>
-    <p class="bloque2" id="nroGanador">Nro Ganador</p>
-    <ul id="historial"></ul>
-    <p class="bloque3" id="avisoProblema"></p>
+
+    <div class="botonera">
+      <input type="button" id="play" value="Jugar !!">
+      <input type="checkbox" id="revancha">Revancha!</input>
+      <p class="bloque2" id="nroGanador">Nro Ganador</p>
+      <ul id="historial"></ul>
+      <p class="bloque3" id="avisoProblema"></p>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
     <!-- my JS -->
-    <script src="js/codigo.js"></script>
+    <script src="js/behaviour.js"></script>
   </body>
 </html>

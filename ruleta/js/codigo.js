@@ -18,6 +18,7 @@ $(document).ready(function() {
 	const mayorGanado = 10;
 	const menorGanado = 10;
 	const costoApuesta = 1; // costo de la apuesta
+	$("#costoAp").text($("#costoAp").text() + costoApuesta);
 	const rojo = "ROJO";
 	const negro = "NEGRO";
 
