@@ -8,28 +8,7 @@ const negro = "NEGRO";
 const probabilidad0 = 0.5; // probabilidad
 const costoRevancha = 10;
 const costoApuesta = 1; // costo de la apuesta
-
-// Tipos de apuesta
-
-/*
-var premioBet = {
-  plenoGanado : 10,
-  colorGanado : 10,
-  parGanado : 10,
-  imparGanado : 10,
-  mayorGanado : 10,
-  menorGanado : 10 }
-
-var tipoBet = {
-
-  tipo : ,
-  valor : ;
-
-  color : 10,
-  par : 10,
-  impar : 10,
-  mayor : 10,
-  menor : 10 }*/
+const premio = 10;
 
 // -------------------------------------------------------------------------- //
 // Clase Ruleta
@@ -65,7 +44,7 @@ Ruleta.prototype.Tirar = function(probabilidad0) {
 function Apuesta(nombre,valor) {
   this.tipo = nombre;
   this.valor = valor;
-  this.cantidad = 0;
+  this.cantidad = 1;
 }
 
 Apuesta.prototype.getTipoAp = function() {
@@ -77,11 +56,11 @@ Apuesta.prototype.getValorAp = function() {
 }
 
 Apuesta.prototype.getCantidadAp = function() {
-  return this.cantdad;
+  return this.cantidad;
 }
 
-Apuesta.prototype.setCantidadAp = function(valor) {
-  this.cantidad = valor;
+Apuesta.prototype.sumarCantidadAp = function(valor) {
+  this.cantidad += valor;
 }
 // -------------------------------------------------------------------------- //
 // Clase Juego
@@ -94,73 +73,106 @@ Juego.prototype.play = function() {
   var nroGanador = 0;
   if (this.apuestas.length > 0) { // el jugador hizo al menos 1 apuesta
     nroGanador = this.rule.Tirar();
+    $("#nroGanador").text("Nro Ganador: "+ nroGanador);
     this.calcularGanadores(nroGanador);
   } else {
     $("#avisoProblema").text("Debe realizar al menos una apuesta");
   }
 }
 
+// fn que sabe como controlar si se ganó o no dependiendo de la apuesta
 Juego.prototype.calcularGanadores = function(nroGanador) {
   var suma=0;
-  for(vari=0; i < this.apuestasi[i].length; i++) {
-    switch (this.apuestasi[i].getTipoAp()) {
-      case expression:
-
-        break;
-      default:
-
+  var lista = "<ul>";
+  for(var i=0; i < this.apuestas.length; i++) {
+    switch (this.apuestas[i].getTipoAp()) {
+      case "PLENO": {
+  		  if (nroGanador == this.apuestas[i].getValorAp()) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+" "+this.apuestas[i].getValorAp()+"<li>";
+        }
+  		  break;}
+      case "COLOR": {
+  		  if (this.apuestas[i].getValorAp() == this.rule.Color(nroGanador)) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+" "+this.apuestas[i].getValorAp()+"<li>";
+        }
+  		  break;}
+      case "PAR": {
+  		  if ((nroGanador % 2) == 0) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+"<li>";
+        }
+  		  break;}
+      case "IMPAR": {
+  		  if ((nroGanador % 2) != 0) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+"<li>";
+        }
+  		  break;}
+      case "MAYOR": {
+  		  if ((nroGanador >= 6) && (nroGanador <= 10)) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+"<li>";
+        }
+  		  break;}
+      case "MENOR": {
+  		  if ((nroGanador >= 1) && (nroGanador <= 5)) {
+  			  suma += (premio * this.apuestas[i].getCantidadAp());
+          lista += "<li>Gan&oacute; "+this.apuestas[i].getTipoAp()+"<li>";
+        }
+  		  break;}
+    }
+  }
+  if (suma) { // el jugador ganó
+    $("#avisoProblema").text("Ud. ha ganado $ " + suma);
+    $("#saldo").text(Number($("#saldo").text())+suma);
+    $("#historial").html(lista);
+  } else {
+    $("#avisoProblema").text("Ud. no ha ganado, hay Revancha si quiere...");
+    if (Number($("#saldo").text()) >= costoRevancha) {
+      $("#revancha").attr("disabled", false);
+    } else {
+      $("#avisoProblema").text("Ud. no ha ganado, no tiene Revancha por falta de saldo");
+      $("#revancha").attr("disabled", true);
     }
   }
 }
 
-// fn que verifica: si existe la apuesta la suma, sino la agrega; al final carga el listado de apuestas
+Juego.prototype.agregarApuesta = function(tipo, valor) {
+  var newAp = new Apuesta(tipo, valor);
+  if (!this.existeApuesta(tipo, valor)) {
+    this.apuestas.push(newAp);
+  }
+  $("#saldo").text($("#saldo").text()-costoApuesta);
+  this.mostrarListaAp();
+}
+
+// fn que verifica: si existe la apuesta la suma y retorna true, sino retorna false
 Juego.prototype.existeApuesta = function(tipo, valor) {
   var i=0;
   var exit = false;
   while ((i < this.apuestas.length) && (!exit)) {
     if ((this.apuestas[i].getTipoAp() == tipo) && (this.apuestas[i].getValorAp() == valor)) {
-      this.apuestas[i].setCantidadAp(1);
+      this.apuestas[i].sumarCantidadAp(1);
       exit = true;
     }
     i++;
   }
-  if (!exit)
-    this.agregarApuesta(tipo, valor);
-  this.mostrarListaAp();
+  return exit;
 }
 
-Juego.prototype.agregarApuesta = function(tipo, valor) {
-  var nuevaAp = new Apuesta(tipo, valor);
-  this.apuestas.push(nuevaAp);
-}
-
+// fn que muestra por pantalla el listado de las apuestas realizadas
 Juego.prototype.mostrarListaAp = function() {
   var lista="<ul>";
-  for (var i=0; i < this.rule.length; i++) {
-    lista += "<li>"+this.rule[i].getTipoAp();
-    if ((this.rule[i].getTipoAp() == "Pleno") || (this.rule[i].getTipoAp() == "Color"))
-      lista += " "+this.rule[i].getValorAp();
-    lista += " = $ "+this.rule[i].getCantidadAp()+"</li>";
+  for (var i=0; i < this.apuestas.length; i++) {
+    lista += "<li>"+this.apuestas[i].getTipoAp();
+    if ((this.apuestas[i].getTipoAp() == "PLENO") || (this.apuestas[i].getTipoAp() == "COLOR"))
+      lista += " "+this.apuestas[i].getValorAp();
+    lista += " x $ "+this.apuestas[i].getCantidadAp()+"</li>";
   }
   lista += "</ul>";
   $("#listado").html(lista);
-}
-
-// fn verica que sólo un checkbox esté tildado
-Juego.prototype.checkAp = function() {
-  var cont = 0;
-  var checkboxes = $(".body").checkbox;
-  for (var i=0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      cont++;
-    }
-  }
-  if (cont > 1) {
-    this.aviso("S&oacute;lo debe existir una apuesta checkeada");
-    return false;
-  } else {
-    return flase;
-  }
 }
 
 // fn de avisos
@@ -174,22 +186,44 @@ $(document).ready(function() {
 
   $("#saldo").text("100");
   $("#costoAp").text(costoApuesta);
-  asignarFuncionalidad(game);
-});
+  $("#revancha").attr("disabled", true);
 
-function asignarFuncionalidad(game) {
-  $("#play").on("click", game.play());
-  $("#cero").on("click", game.agregarApuesta("el tipo me lo tiene que dar el checkbox tildado",0));
-  $("#uno").on("click", game.agregarApuesta("",1));
-  $("#dos").on("click", game.agregarApuesta("",2));
-  $("#tres").on("click", game.agregarApuesta("",3));
-  $("#cuatro").on("click", game.agregarApuesta("",4));
-  $("#cinco").on("click", game.agregarApuesta("",5));
-  $("#seis").on("click", game.agregarApuesta("",6));
-  $("#siete").on("click", game.agregarApuesta("",7));
-  $("#ocho").on("click", game.agregarApuesta("",8));
-  $("#nueve").on("click", game.agregarApuesta("",9));
-  $("#diez").on("click", game.agregarApuesta("",10));
-  $("#negro").on("click", game.agregarApuesta("",negro));
-  $("#rojo").on("click", game.agregarApuesta("",rojo));
-}
+  $("#b_cero").on("click", function() {game.agregarApuesta("PLENO", 0)});
+  $("#b_uno").on("click", function() {game.agregarApuesta("PLENO", 1)});
+  $("#b_dos").on("click", function() {game.agregarApuesta("PLENO", 2)});
+  $("#b_tres").on("click", function() {game.agregarApuesta("PLENO", 3)});
+  $("#b_cuatro").on("click", function() {game.agregarApuesta("PLENO", 4)});
+  $("#b_cinco").on("click", function() {game.agregarApuesta("PLENO", 5)});
+  $("#b_seis").on("click", function() {game.agregarApuesta("PLENO", 6)});
+  $("#b_siete").on("click", function() {game.agregarApuesta("PLENO", 7)});
+  $("#b_ocho").on("click", function() {game.agregarApuesta("PLENO", 8)});
+  $("#b_nueve").on("click", function() {game.agregarApuesta("PLENO", 9)});
+  $("#b_diez").on("click", function() {game.agregarApuesta("PLENO", 10)});
+
+  $("#b_black").on("click", function() {game.agregarApuesta("COLOR", "NEGRO")});
+  $("#b_red").on("click", function() {game.agregarApuesta("COLOR", "ROJO")});
+
+  $("#b_par").on("click", function() {game.agregarApuesta("PAR", undefined)});
+  $("#b_impar").on("click", function() {game.agregarApuesta("IMPAR", undefined)});
+
+  $("#b_mayor").on("click", function() {game.agregarApuesta("MAYOR", undefined)});
+  $("#b_menor").on("click", function() {game.agregarApuesta("MENOR", undefined)});
+
+  $("#play").on("click", function() {game.play()});
+
+  $("#re_play").on("click", function() {
+    $("#saldo").text("100");
+    $("#historial").html("<li></li>");
+    $("#listado").html("<li></li>");
+    $("#nroGanador").text("Nro Ganador: ");
+    game.aviso("Reiniciado");
+    $("#revancha").attr("disabled", true);
+    game = new Juego();
+  });
+
+  $("#revancha").on("click", function() {
+    $("#saldo").text($("#saldo").text()-costoRevancha);
+    game.play();
+    $("#revancha").attr("disabled", true);
+  });
+});

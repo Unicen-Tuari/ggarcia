@@ -40,21 +40,26 @@ table {
 	table-layout: fixed;
 }
 
-.betContainer {
-	float:left;
-	width: 33%;
-}
-
 .betTable {
 	float:left;
-	width: 33%;
+	width: 50%;
 	padding-top: 5%;
 }
 
 .betList {
 	float:left;
-	width: 33%;
+	width: 50%;
 	padding-top: 5%;
+}
+
+.problemas, .ganadores {
+	float:left;
+	width: 50%;
+}
+
+#avisoProblema {
+	background-color: black;
+	color: #FFFFFF;
 }
 
 th, td {
@@ -63,7 +68,7 @@ th, td {
 	border: 2px solid white;
 }
 
-#cero {
+.green {
 	background-color: green;
 }
 
@@ -76,7 +81,12 @@ th, td {
 }
 
 .botonera {
-	padding-top: 5%;
+	padding-top: 1%;
 	clear:both;
+}
+
+.bloqueWinner {
+	font-weight: bold;
+	color: #0404B4;
 }
 /*</style>*/
