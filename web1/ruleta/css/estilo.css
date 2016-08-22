@@ -1,0 +1,92 @@
+/*<style type="text/css">*/
+/* CSS Document */
+* {
+	font:Verdana;
+}
+
+body {
+	background-color: #CCCCCC;
+	text-align:center;
+}
+
+h1, h2 {
+	text-align:center;
+}
+
+p, ul{
+	color:#3399CC;
+	font-size:16px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#saldo {
+	width: 5%;
+}
+
+.bloque1{
+	text-align:left;
+	padding-bottom: 5%;
+}
+
+table {
+	align: center;
+	border: 4px solid white;
+	width: 200px;
+	padding: 0px;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.betTable {
+	float:left;
+	width: 50%;
+	padding-top: 5%;
+}
+
+.betList {
+	float:left;
+	width: 50%;
+	padding-top: 5%;
+}
+
+.problemas, .ganadores {
+	float:left;
+	width: 50%;
+}
+
+#avisoProblema {
+	background-color: black;
+	color: #FFFFFF;
+}
+
+th, td {
+	text-align: center;
+	color: white;
+	border: 2px solid white;
+}
+
+.green {
+	background-color: green;
+}
+
+.rojo {
+	background-color: red;
+}
+
+.negro {
+	background-color: black;
+}
+
+.botonera {
+	padding-top: 1%;
+	clear:both;
+}
+
+.bloqueWinner {
+	font-weight: bold;
+	color: #0404B4;
+}
+/*</style>*/

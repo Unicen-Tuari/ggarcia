@@ -1,0 +1,88 @@
+<!-- Este documento fué creado por Gabriel García -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Les Jeux</title>
+    <link href="css/estilo.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <h1>LES JEUX</h1>
+    <h2>Ruleta On Line - Parte 2</h2>
+
+    <div class="bloque1">
+      <h3>Su Saldo es de $ <span id="saldo"></span></h3>
+      <p>Costo de apuesta $ <span id="costoAp"></span></p>
+
+      <div class="betTable">
+        <table align="center">
+          <tr>
+            <td colspan="3" class="green"><input id="b_cero" name"nro" type="button" value="0"/></td>
+          </tr>
+          <tr>
+            <td class="rojo"><input id="b_uno" name"nro" type="button" value="1"/></td>
+            <td class="negro"><input id="b_dos" name"nro" type="button" value="2"/></td>
+            <td class="rojo"><input id="b_tres" name"nro" type="button" value="3"/></td>
+          </tr>
+          <tr>
+            <td class="negro"><input id="b_cuatro" name"nro" type="button" value="4"/></td>
+            <td class="rojo"><input id="b_cinco" name"nro" type="button" value="5"/></td>
+            <td class="rojo"><input id="b_seis" name"nro" type="button" value="6"/></td>
+          </tr>
+          <tr>
+            <td class="negro"><input id="b_siete" name"nro" type="button" value="7"/></td>
+            <td class="rojo"><input id="b_ocho" name"nro" type="button" value="8"/></td>
+            <td class="negro"><input id="b_nueve" name"nro" type="button" value="9"/></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="negro"><input id="b_diez" name"nro" type="button" value="10"/></td>
+          </tr>
+        </table>
+
+        <table align="center">
+          <tr>
+            <td class="rojo"><input id="b_red" type="button" value="ROJO"/></td>
+            <td class="negro"><input id="b_black" type="button" value="NEGRO"/></td>
+          </tr>
+          <tr>
+            <td class="green"><input id="b_par" type="button" value="PAR"/></td>
+            <td class="green"><input id="b_impar" type="button" value="IMPAR"/></td>
+          </tr>
+          <tr>
+            <td class="green"><input id="b_mayor" type="button" value="MAYOR"/></td>
+            <td class="green"><input id="b_menor" type="button" value="MENOR"/></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="betList">
+        Listado de apuestas realizadas:
+        <ul id="listado"></ul>
+      </div>
+
+    </div>
+
+    <div class="botonera">
+      <input type="button" id="play" value="Jugar !!"></input>
+      <input type="button" id="revancha" value="Revancha!"></input>
+      <div>
+        <input type="button" id="re_play" value="Reiniciar">
+      </div>
+      <p class="bloqueWinner" id="nroGanador">Nro Ganador: </p>
+      <div>
+        <div class="ganadores">
+          <ul id="historial"></ul>
+        </div>
+        <div class="problemas">
+          <p id="avisoProblema"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <!-- my JS -->
+    <script src="js/behaviour.js"></script>
+  </body>
+</html>
