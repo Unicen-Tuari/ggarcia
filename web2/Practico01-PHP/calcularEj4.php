@@ -1,10 +1,11 @@
 <?php
   $suma = 0;
   $dato = 'num';
-  if ((isset($_POST["cantidad"])) && (is_numeric($_POST["cantidad"]))) {
-    for ($i=0; $i < $_POST["cantidad"]; $i++) {
-      $suma += $_POST[($dato + $i)];
+  if ($_POST) {
+    foreach ($_POST as $clave=>$valor) { // se envían todos los elementos del DOM dentro del formulario
+      $suma += $valor;
     }
+    echo "La suma de los valores es " + $suma;
   } else {
     echo "Debe ingresar una cantidad de inputs";
   }
