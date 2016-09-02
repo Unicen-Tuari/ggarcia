@@ -45,5 +45,5 @@ Como se trata de tender puentes entre el mundo de la educación y el mundo del t
 	];
 	$smarty = new Smarty;
 	$smarty->assign('noticias',$noticias);
-	$smarty->display('noticias.tpl');
+	$smarty->display('../templates/noticias.tpl');
 ?>
