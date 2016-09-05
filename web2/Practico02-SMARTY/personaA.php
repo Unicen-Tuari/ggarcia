@@ -2,7 +2,7 @@
 	require("../libs/Smarty.class.php");
   $info = [];
 
-	$smarty = new Smarty;
+	//$smarty = new Smarty;
 
   if (isset($_POST["inversion"]) && isset($_POST["interes"])) {
     $info = [
@@ -12,7 +12,9 @@
     ];
   }
 
-  $smarty->assign("titulo","Ejercicio 2");
+  /*
+	$smarty->assign("titulo","Ejercicio 2");
   $smarty->assign('info',$info);
 	$smarty->display('../templates/persona.tpl');
+	*/
 ?>
