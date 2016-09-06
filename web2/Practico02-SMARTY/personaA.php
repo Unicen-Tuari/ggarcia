@@ -1,28 +1,19 @@
 <?php
-	require("../libs/Smarty.class.php");
 
-	$smarty = new Smarty;
+	$now = date_create(date("Y-m-d"));
 
-  $name = "";
-  $last = "";
-  $birth = getdate();
+	if (isset($_POST["Nombre"]) && isset($_POST["Apellido"]) && isset($_POST["fecha"])) {
+		$birth = strtotime($_POST["fecha"]);
 
-  if (isset($name) && isset($last) && isset($birth)) {
-    print_r($name . " " . $last);
-		print_r("Fecha de nacimiento: " . $birth);
-		print_r("Nació un " . date("l",$birth));
-		print_r(date_diff(getdate(),$birth));
-		/*print_r(); // semanas
-		print_r(); // meses
-		print_r(); // años
-		*/
+    print_r($_POST["Nombre"] . " " . $_POST["Apellido"] . "<br>");
+		print_r("Fecha de nacimiento: " . date("Y-m-d",$birth) . "<br>");
+		print_r("Nació un " . date("l",$birth) . "<br>");
+		print_r(date_diff(date_create(date("Y-m-d",$birth)),$now)->format("%R%a d&iacute;as<br>"));
+		print_r("<br>"); // semanas
+		print_r("<br>"); // meses
+		print_r(date("Y")-date("Y",$birth) . " años<br>"); // años
   } else {
   	print_r("Error - Debe cargar los datos correctamente.");
   }
 
-	$smarty->assign("titulo","Ejercicio 2");
-  $smarty->assign('Nombre',$name);
-  $smarty->assign('Apellido',$last);
-  $smarty->assign('fecha',$birth);
-	$smarty->display('../templates/personaA.tpl');
 ?>
