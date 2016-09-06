@@ -1,13 +1,17 @@
 <?php
 	require("../libs/Smarty.class.php");
 
-	//$smarty = new Smarty;
+	$smarty = new Smarty;
 
-  if (isset($_POST["Nombre"]) && isset($_POST["Apellido"]) && isset($_POST["fecha"])) {
-    print_r($_POST["Nombre"] + " " + $_POST["Apellido"]);
-		print_r("Fecha de nacimiento: " + $_POST["fecha"]);
-		print_r("Nació un " + date("l",$_POST["fecha"]));
-		print_r(date_diff(getdate(),$_POST["fecha"]));
+  $name = "";
+  $last = "";
+  $birth = getdate();
+
+  if (isset($name) && isset($last) && isset($birth)) {
+    print_r($name . " " . $last);
+		print_r("Fecha de nacimiento: " . $birth);
+		print_r("Nació un " . date("l",$birth));
+		print_r(date_diff(getdate(),$birth));
 		/*print_r(); // semanas
 		print_r(); // meses
 		print_r(); // años
@@ -16,14 +20,9 @@
   	print_r("Error - Debe cargar los datos correctamente.");
   }
 
-  /*
 	$smarty->assign("titulo","Ejercicio 2");
-  $smarty->assign('info',$info);
-	$smarty->display('../templates/persona.tpl');
-	*/
+  $smarty->assign('Nombre',$name);
+  $smarty->assign('Apellido',$last);
+  $smarty->assign('fecha',$birth);
+	$smarty->display('../templates/personaA.tpl');
 ?>
-
-<p>Tiene días 6.572 Días</p>
-<p>938,86 Semanas</p>
-<p>215,92 Meses</p>
-<p>18 Años</p>
