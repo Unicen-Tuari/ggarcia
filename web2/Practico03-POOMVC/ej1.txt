@@ -1,5 +1,13 @@
-Indicar verdadero o falso, según corresponda:
-Un patrón arquitectónico describe la arquitectura general de un sistema
-En MVC, el modelo es el intermediario entre la vista y el controlador
-En MVC, el controlador es el encargado de capturar los eventos del usuario
-En MVC, las reglas de negocio se implementan en el modelo
+(F) Un patrón arquitectónico describe la arquitectura general de un sistema
+  Dan una descripción de los elementos y el tipo de relación que tienen junto con un conjunto de restricciones sobre cómo pueden ser usados.
+  Un patrón arquitectónico expresa un esquema de organización estructural esencial para un sistema de software, que consta de subsistemas, sus responsabilidades e interrelaciones.
+  Aunque un patrón arquitectónico comunica una imagen de un sistema, no es una arquitectura como tal.
+
+(F) En MVC, el modelo es el intermediario entre la vista y el controlador
+  El controlador es el que une a las otras dos partes
+
+(V) En MVC, el controlador es el encargado de capturar los eventos del usuario
+  Cuando una nueva entrada de un usuario llega, el Controller la valida y llama al modelo para modificar los datos, luego actualiza la vista.
+
+(F) En MVC, las reglas de negocio se implementan en el modelo
+  Las reglas de negocio se implementan en el controlador, el modelo sólo se encarga del acceso a los datos.
