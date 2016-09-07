@@ -1,0 +1,5 @@
+Indicar verdadero o falso, según corresponda:
+Un patrón arquitectónico describe la arquitectura general de un sistema
+En MVC, el modelo es el intermediario entre la vista y el controlador
+En MVC, el controlador es el encargado de capturar los eventos del usuario
+En MVC, las reglas de negocio se implementan en el modelo
