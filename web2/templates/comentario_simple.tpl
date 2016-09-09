@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading"><a id="aLink" href="#" >N</a> <small id="aLinkSmall">newMail</small></h4>
-    <p>Este es el primer comentario.</p>
+    <h4 class="media-heading"><a href="#">{$nombreCapit}</a> <small>{$emailFormat}</small></h4>
+    <p>{$comentarioSimple}</p>
   </div>
 </div>
