@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="../templates/header.tpl"}
 
 	<div class="container">
 
@@ -18,4 +18,4 @@
 		{/foreach}
 	</div>
 
-{include file="footer.tpl"}
+{include file="../templates/footer.tpl"}

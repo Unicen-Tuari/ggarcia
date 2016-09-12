@@ -1,6 +1,6 @@
 <?php
-	require('./libs/Smarty.class.php');
+	require('../libs/Smarty.class.php');
 
 	$smarty = new Smarty;
-	$smarty->display('comentarios.tpl');
+	$smarty->display('../templates/comentarios.tpl');
 ?>

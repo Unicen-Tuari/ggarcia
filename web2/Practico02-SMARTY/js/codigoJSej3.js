@@ -36,8 +36,8 @@ function processAjax() {
 function mostrar() {
   // si dominio es T asignar otro estilo
   if (identificarDominio(document.getElementById("email").val())) {
-
+    // cambiar css
   } else {
-
+    // dejar original
   }
 }

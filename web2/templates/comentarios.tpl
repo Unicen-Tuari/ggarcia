@@ -1,4 +1,4 @@
-{include file="header.tpl" }
+{include file="../templates/header.tpl"}
 
 	<div class="container">
 
@@ -24,6 +24,6 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/codigoJSej3.js" charset="utf-8"></script>
+	<script src="codigoJSej3.js" charset="utf-8"></script>
 
-{include file="footer.tpl"}
+{include file="../templates/footer.tpl"}
