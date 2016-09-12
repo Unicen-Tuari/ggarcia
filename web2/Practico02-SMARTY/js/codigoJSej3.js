@@ -14,7 +14,8 @@ function identificarDominio(dom) {
 function processAjax() {
   var info = {
     nameKey =  $('#idName').val(),
-    emailKey = $('#idEmail').val()
+    emailKey = $('#idEmail').val(),
+    commentKey = $('idComment').val()
   };
   $.ajax({
     method:  'POST',
@@ -23,7 +24,7 @@ function processAjax() {
     contentType: 'application/json; charset=utf-8',
     url: '../comentarioFormateado.php', // http://localhost/Practico02-SMARTY/comentarioFormateado.php
     success: function (response) {
-      $("#resultado").innerHTML(response); //{include file="comentario_simple.tpl"}
+      $("#comments").innerHTML(response); //{include file="comentario_simple.tpl"}
     }
     error:function(jqxml, status, errorThrown){
       console.log(errorThrown);
@@ -33,7 +34,7 @@ function processAjax() {
 }
 
 function mostrar() {
-  // si dominio es T asignar otro formato
+  // si dominio es T asignar otro estilo
   if (identificarDominio(document.getElementById("email").val())) {
 
   } else {

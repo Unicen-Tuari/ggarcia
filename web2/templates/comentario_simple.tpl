@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading"><a href="#">{$nombreCapit}</a> <small>{$emailFormat}</small></h4>
+    <h4 class="media-heading"><a href="#">{$nombreCapit|capitalize}</a> <small>{$emailFormat}</small></h4>
     <p>{$comentarioSimple}</p>
   </div>
 </div>
