@@ -8,5 +8,7 @@
     public static $ACTION_NEW_CLASS = 'AMB_clase';
     public static $ACTION_NEW_TEACHER = 'AMB_profesor';
     public static $ACTION_NEW_DANCER = 'AMB_alumno';
+    // va? lo vemos...
+    public static $ACTION_SIGN_UP = 'inscribirse';
   }
 ?>
