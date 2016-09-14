@@ -1,5 +1,4 @@
 <?php
-
   class ConfigApp {
     public static $ACTION = 'action';
     public static $ACTION_HOME = 'home';
@@ -12,5 +11,4 @@
     // va? lo vemos...
     public static $ACTION_SIGN_UP = 'inscribirse';
   }
-
 ?>
