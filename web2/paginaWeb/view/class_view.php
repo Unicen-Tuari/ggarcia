@@ -4,7 +4,7 @@
   class ClassView {
     private $smarty;
 
-    function __construct(){
+    function __construct() {
       this->Smarty = new Smarty();
     }
 
