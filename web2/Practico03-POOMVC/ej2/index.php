@@ -12,5 +12,4 @@ if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST )
         $figureController->showFigures();
     }
 
-
 ?>
