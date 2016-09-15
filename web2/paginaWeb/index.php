@@ -1,5 +1,5 @@
 <?php
-  require_once("config/configApp.php");
+  require_once("routing/configApp.php");
   require_once("controller/home_controller.php");
   require_once("controller/dance_controller.php");
   require_once("controller/contact_controller.php");
@@ -16,15 +16,16 @@
         $danceController = new DanceController();
         $danceController->clases();
         break;
+      // Contact form del sitio
       case (ConfigApp::$ACTION_CONTACT_US):
         $contactController = new ContactController();
         $contactController->contactUs();
         break;
       default:
         echo "No se igualó clave de request";
-    }
+    };
   } else {
-    echo "No se encontró clave"
-  }
+    echo "No se encontró clave";
+  };
 
 ?>
