@@ -1,31 +1,25 @@
 <?php
   require_once("routing/configApp.php");
-  require_once("controller/home_controller.php");
   require_once("controller/dance_controller.php");
-  require_once("controller/contact_controller.php");
 
-  if (!array_key_exists(ConfigApp::$ACTION,$_REQUEST)) {
+  if(!array_key_exists(ConfigApp::$ACTION, $_REQUEST) || $_REQUEST[ConfigApp::$ACTION] == ConfigApp::$ACTION_DEFAULT) {
+    $danceController = new DanceController();
+    $danceController->showHome();
+  } else {
     switch ($_REQUEST[ConfigApp::$ACTION]) {
-      // Home del sitio
-      case (ConfigApp::$ACTION_HOME):
-        $homeController = new HomeController();
-        $homeController->home();
-        break;
       // Clases del sitio
       case (ConfigApp::$ACTION_DANCE):
         $danceController = new DanceController();
-        $danceController->clases();
+        $danceController->showClases();
         break;
       // Contact form del sitio
       case (ConfigApp::$ACTION_CONTACT_US):
-        $contactController = new ContactController();
-        $contactController->contactUs();
+        $danceController = new DanceController();
+        $danceController->showContactUs();
         break;
       default:
-        echo "No se igualó clave de request";
+        echo "No se igualó clave de request - Página no encontrada";
     };
-  } else {
-    echo "No se encontró clave";
   };
 
 ?>

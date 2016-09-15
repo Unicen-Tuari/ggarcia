@@ -2,7 +2,7 @@
 
   class ConfigApp {
     public static $ACTION = 'action';
-    public static $ACTION_HOME = 'home';
+    public static $ACTION_DEFAULT = 'home';
     public static $ACTION_DANCE = 'dance';
     public static $ACTION_CONTACT_US = 'contact_us';
     // esto se puede convertir en un solo html con 3 forms
