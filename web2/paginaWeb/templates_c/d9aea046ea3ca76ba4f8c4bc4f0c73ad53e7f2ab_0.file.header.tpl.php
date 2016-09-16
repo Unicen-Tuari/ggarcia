@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.30, created on 2016-09-16 12:47:43
+  from "D:\165WEBII\ggarcia\web2\paginaWeb\view\templates\header.tpl" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_57dbcdcfb65eb3_27718210',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'd9aea046ea3ca76ba4f8c4bc4f0c73ad53e7f2ab' => 
+    array (
+      0 => 'D:\\165WEBII\\ggarcia\\web2\\paginaWeb\\view\\templates\\header.tpl',
+      1 => 1474022861,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_57dbcdcfb65eb3_27718210 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,3 +55,5 @@
       </div>
     </div>
     <!-- Fin Navigation -->
+<?php }
+}
