@@ -8,14 +8,19 @@
       $this->smarty = new Smarty();
     }
 
-    public function showPage($dance) {
-      $this->smarty->assign("dance",$dance);
-      $this->smarty->display("dance.tpl");
-    }
-
     public function home() {
       //$this->smarty->assign("dance",$dance);
       $this->smarty->display("view/templates/home.tpl");
+    }
+
+    public function dance() {
+      //$this->smarty->assign("dance",$dance);
+      $this->smarty->display("dance.tpl");
+    }
+
+    public function contact() {
+      //$this->smarty->assign("dance",$dance);
+      $this->smarty->display("contact.tpl");
     }
 
   }

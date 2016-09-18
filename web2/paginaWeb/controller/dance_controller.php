@@ -15,5 +15,13 @@
       $this->view->home();
     }
 
+    function showClases() {
+      $this->view->dance();
+    }
+
+    function showContactUs() {
+      $this->view->contact();
+    }
+
   }
 ?>

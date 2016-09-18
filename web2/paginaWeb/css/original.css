@@ -4,7 +4,7 @@
 /*Cuerpo general para todas las páginas*/
 body {
 	color: white;
-	background-image: url("img/FlyArt.png");
+	background-image: url("../img/FlyArt.png");
 	background-size:100%;
 	background-position: 5px 30px;
 	background-repeat: no-repeat;
