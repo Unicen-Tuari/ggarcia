@@ -10,7 +10,7 @@
 
     public function home() {
       //$this->smarty->assign("dance",$dance);
-      $this->smarty->display("view/templates/home.tpl");
+      $this->smarty->display("templates/home.tpl");
     }
 
     public function dance() {
