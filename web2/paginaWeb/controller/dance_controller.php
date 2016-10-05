@@ -11,16 +11,25 @@
       $this->view = new DanceView();
     }
 
-    function showHome() {
-      $this->view->home();
+    function showBase() {
+      $this->view->showWeb("templates/base.tpl");
     }
 
-    function showClases() {
-      $this->view->dance();
+    function showHome() {
+      $this->view->showWeb("templates/home.tpl");
+    }
+
+    // le puedo parametrizar una variable para que sólo me muestre una danza, y si es null q muestre todas
+    function showDance() {
+      $this->view->showWeb("templates/clases.tpl");
     }
 
     function showContactUs() {
-      $this->view->contact();
+      $this->view->showWeb("templates/clases.tpl");
+    }
+
+    function showContactUs() {
+      $this->view->showWeb("templates/error.tpl");
     }
 
   }
