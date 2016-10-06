@@ -9,7 +9,6 @@
     }
 
     public function showWeb($nameWeb) {
-      //$this->smarty->assign("dance",$dance);
       $this->smarty->display($nameWeb);
     }
 

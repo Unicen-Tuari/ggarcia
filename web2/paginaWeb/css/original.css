@@ -28,3 +28,7 @@ footer {
 .insideH1 {
 	font-size: 14px;
 }
+
+#nameForm, #emailForm {
+	color: grey;
+}

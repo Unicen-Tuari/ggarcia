@@ -6,9 +6,6 @@ $(document).ready(function() {
   $("#clase").on("click",function() {
     event.preventDefault();
     webLoader("index.php?action=dance")});
-  $("#insc").on("click",function() {
-    event.preventDefault();
-    webLoader("index.php?action=inscripcion")});
   $("#contact").on("click",function() {
     event.preventDefault();
     webLoader("index.php?action=contact_us")});
