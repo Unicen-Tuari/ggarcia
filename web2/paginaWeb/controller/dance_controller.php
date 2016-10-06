@@ -28,7 +28,7 @@
       $this->view->showWeb("templates/clases.tpl");
     }
 
-    function showContactUs() {
+    function showError() {
       $this->view->showWeb("templates/error.tpl");
     }
 

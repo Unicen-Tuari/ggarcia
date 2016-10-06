@@ -4,10 +4,14 @@
 
   $danceController = new DanceController();
 
-  if(!array_key_exists(ConfigApp::$ACTION, $_REQUEST) || $_REQUEST[ConfigApp::$ACTION] == ConfigApp::$ACTION_DEFAULT) {
+  if (!array_key_exists(ConfigApp::$ACTION, $_REQUEST)) {
     $danceController->showBase();
   } else {
     switch ($_REQUEST[ConfigApp::$ACTION]) {
+      // Home del sitio
+      case (ConfigApp::$ACTION_HOME):
+        $danceController->showHome();
+        break;
       // Clases del sitio
       case (ConfigApp::$ACTION_DANCE):
         $danceController->showDance();
