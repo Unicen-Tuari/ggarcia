@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h1>Danzas <span class="insideH1">(click en imagen para inscribirse)</span></h1>
+      <h1>Danzas</h1>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
         <!-- Wrapper for slides -->

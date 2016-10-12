@@ -12,6 +12,11 @@
       $this->smarty->display($nameWeb);
     }
 
+    public function showSignIn($nameWeb, $dances, $students) {
+      $this->smarty->assign($dances, $students);
+      $this->smarty->display($nameWeb);
+    }
+
   }
 
 ?>
