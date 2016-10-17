@@ -12,6 +12,9 @@ $(document).ready(function() {
   $("#contact").on("click",function() {
     event.preventDefault();
     webLoader("index.php?action=contact_us")});
+  $("#register").on("click",function() {
+    event.preventDefault();
+    webLoader("index.php?action=register")});
 });
 
 // fn que obtiene html a cargar en un div agregando funcionalidad

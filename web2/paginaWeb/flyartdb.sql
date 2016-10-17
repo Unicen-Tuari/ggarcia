@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-09-2016 a las 00:56:31
+-- Tiempo de generación: 17-10-2016 a las 21:43:42
 -- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.23
+-- Versión de PHP: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,8 +42,18 @@ CREATE TABLE `alumno` (
 CREATE TABLE `clase` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `id_profesor` int(11) NOT NULL
+  `id_profesor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `clase`
+--
+
+INSERT INTO `clase` (`id`, `nombre`, `id_profesor`) VALUES
+(2, 'baby', 1),
+(3, 'contorsion', 2),
+(4, 'contempo', 1),
+(5, 'telas', NULL);
 
 -- --------------------------------------------------------
 
@@ -68,6 +78,14 @@ CREATE TABLE `profesor` (
   `email` varchar(50) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`id`, `nombre`, `email`, `telefono`) VALUES
+(1, 'gabriel', 'loco@gmail.com', '0249 154 673072'),
+(2, 'lucia', 'lu@weef.com', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -115,12 +133,12 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `profesor`
 --
 ALTER TABLE `profesor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

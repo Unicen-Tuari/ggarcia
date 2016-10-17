@@ -11,6 +11,16 @@ body {
 	background-color: #9A011F;
 }
 
+#insc {
+	position: absolute;
+	z-index: 100;
+}
+
+#imgHome {
+	position: absolute;
+	z-index: 0;
+}
+
 .navbar-default {
 	opacity: 0.6;
 }

@@ -77,8 +77,7 @@
       move_uploaded_file($image["tmp_name"], $path);
       return $path;
     }
-
-  }
 */
 
+  }
 ?>

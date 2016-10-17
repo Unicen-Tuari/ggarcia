@@ -27,9 +27,12 @@
       $this->view->showWeb("templates/contact_us.tpl");
     }
 
-    function showSignIn() {
-      $dances = $this->model->getDances();
-      $this->view->showSignIn('templates/inscripcion.tpl',);
+    function showRegister() {
+      $this->view->showWeb("templates/register.tpl");
+    }
+
+    function showAssign() {
+      $this->view->showWeb("templates/inscripcion.tpl");
     }
 
     function showError() {

@@ -1,4 +1,4 @@
-<div class="container">
+<div id="imgHome" class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="thumbnail">
