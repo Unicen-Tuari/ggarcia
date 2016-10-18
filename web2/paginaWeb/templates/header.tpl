@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/original.css"/>
   </head>
   <body>
+
     <!-- Navigation -->
     <div class="row">
       <div class="col-sm-5">
@@ -14,10 +15,16 @@
           <div class="container-fluid">
 
             <div class="navbar-header">
-              <a id="home" class="navbar-brand" href="#">Web Fly-Art</a>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" id="home" href="#">Web Fly-Art</a>
             </div>
-
-            <div class="collapse navbar-collapse">
+            <!-- Barra de navegacion general -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a id="register" href="#">Registro</a></li>
                 <li><a id="insc" href="#">Inscripciones</a></li>
@@ -29,4 +36,3 @@
         </nav>
       </div>
     </div>
-    <!-- Fin Navigation -->

@@ -44,6 +44,10 @@
       $this->view->showWebSignUp("templates/inscripcion.tpl", $dancesList, $studentsList, $signUpList);
     }
 
+    public function unsubscribe() {
+      $this->model->unsubscribe($_REQUEST['row']);
+    }
+
     public function showError() {
       $this->view->showWeb("templates/error.tpl");
     }

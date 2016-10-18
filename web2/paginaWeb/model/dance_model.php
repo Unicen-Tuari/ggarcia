@@ -60,9 +60,9 @@
       return $studentsList;
     }
 
-    function deleteSignIn($row){
+    function unsubscribe($row){
       $delete = $this->db->prepare("DELETE FROM inscripto WHERE rowId=?");
-      $delete->execute(array($index));
+      $delete->execute([$row]);
     }
 
 

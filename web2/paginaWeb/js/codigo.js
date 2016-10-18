@@ -66,3 +66,18 @@ $('#asignar').submit(function(){
   });
 }
 */
+function deleteSignUp(rowId) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    method: "POST",
+    url: "index.php?action=unsubscribe&row=rowId",
+    data: formData,
+    contentType: false,
+    cache: false,
+    processData:false,
+    success: function(data) {
+      webLoader("index.php?action=inscripcion");
+    }
+  });
+}

@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <form>
     <div class="form-group">
       <label for="selDanza">Danza</label>
@@ -25,7 +25,10 @@
   <div class="form-group">
     <div class="row">
       {foreach from=$inscriptos item=sign}
-      <p>{$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}</p>
+      <p>
+        {$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}
+        <a href="#" onclick="deleteSignUp({$sign['rowId']})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+      </p>
       {/foreach}
     </div>
   </div>

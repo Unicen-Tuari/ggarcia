@@ -27,6 +27,9 @@
       case (ConfigApp::$ACTION_SIGN_UP_SUBSCRIBE):
         $danceController->signUp();
         break;
+      case (ConfigApp::$ACTION_SIGN_UP_UNSUBSCRIBE):
+        $danceController->unsubscribe();
+        break;
       // Register form del sitio
       case (ConfigApp::$ACTION_REGISTER):
         $danceController->showRegister();
