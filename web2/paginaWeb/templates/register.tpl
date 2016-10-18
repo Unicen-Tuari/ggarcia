@@ -13,11 +13,7 @@
                 <input type="text" class="form-control" id="nameDanceForm" placeholder="Ingrese nombre">
               </div>
               <div class="form-group">
-                <label for="profeAsignado">Profesor asignado</label>
-                <input type="text" class="form-control" id="profeAsignado" placeholder="Ingrese Id profesor">
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary" id="registroClase">Registrar</button>
               </div>
             </form>
           </div>

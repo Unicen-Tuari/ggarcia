@@ -22,6 +22,9 @@
     public function showDance() {
       $this->view->showWeb("templates/clases.tpl");
     }
+    public function addDance() {
+      $this->model->addDance($_REQUEST['nameD']);
+    }
 
     public function showContactUs() {
       $this->view->showWeb("templates/contact_us.tpl");
@@ -45,6 +48,7 @@
     }
 
     public function unsubscribe() {
+      echo $_REQUEST['row'];
       $this->model->unsubscribe($_REQUEST['row']);
     }
 

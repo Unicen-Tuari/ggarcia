@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form>
+  <form method="post">
     <div class="form-group">
       <label for="selDanza">Danza</label>
       <select class="form-control" id="selDanza">
@@ -22,15 +22,17 @@
     </div>
   </form>
 
-  <div class="form-group">
-    <div class="row">
-      {foreach from=$inscriptos item=sign}
-      <p>
-        {$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}
-        <a href="#" onclick="deleteSignUp({$sign['rowId']})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-      </p>
-      {/foreach}
+  <form>
+    <div class="form-group">
+      <div class="row">
+        {foreach from=$inscriptos item=sign}
+        <p>
+          {$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}
+          <a href="#" onclick="deleteSignUp({$sign['rowId']})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+        </p>
+        {/foreach}
+      </div>
     </div>
-  </div>
+  </form>
 
 </div>

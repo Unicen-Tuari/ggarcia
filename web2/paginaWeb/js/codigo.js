@@ -32,23 +32,23 @@ function webLoader(link) {
       }
     });
 }
-/*
-$('#asignar').submit(function(){
+
+$('#registroClase').submit(function(){
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
    method: "POST",
-   url: "index.php?action=assign_dance_teacher",
+   url: "index.php?action=add_dance&row=" + $("#nameDanceForm").val(),
    data: formData,
    contentType: false,
    cache: false,
    processData:false,
    success: function(data){
-     refreshList(data);
-     $('#addForm').trigger("reset");
+     webLoader("index.php?action=register");
    }
  });
-
+}
+/*
  $('#inscribir').submit(function(){
    event.preventDefault();
    var formData = new FormData(this);
@@ -71,12 +71,13 @@ function deleteSignUp(rowId) {
   var formData = new FormData(this);
   $.ajax({
     method: "POST",
-    url: "index.php?action=unsubscribe&row=rowId",
+    url: "index.php?action=unsubscribe&nameD=" + rowId,
     data: formData,
     contentType: false,
     cache: false,
     processData:false,
     success: function(data) {
+      alert("Se pudo...");
       webLoader("index.php?action=inscripcion");
     }
   });

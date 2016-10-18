@@ -19,6 +19,19 @@
       return $danceList;
     }
 
+    function addDance($name) {
+      $this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();
+        $insertDance = $this->db->prepare("INSERT INTO clase(nombre) VALUES(?)");
+        $insertDance->execute($name);
+        $this->$db->commit();
+      } catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }
+    }
+
     function getStudentsByDance() {
       $studentList = [];
       $select = $this->db->prepare("SELECT inscripto.rowId, clase.id as 'claseId', clase.nombre as 'claseNombre', alumno.id as 'alumnoId', alumno.nombre as 'alumnoNombre', alumno.email as 'alumnoEmail' FROM inscripto INNER JOIN alumno ON alumno.id = inscripto.id_alumno INNER JOIN clase ON clase.id = inscripto.id_clase");
@@ -31,11 +44,19 @@
     }
 
     function addStudentByDance($danceId, $nameStudent, $emailStudent) {
-      $insertStudent = $this->db->prepare("INSERT INTO alumno(nombre, email) VALUES(?,?)");
-      $insertStudent->execute(array($nameStudent,$emailStudent));
-      $fk_student = $this->db->lastInsertId();
-      $signIn = $this->db->prepare("INSERT INTO inscripto(id_alumno, id_clase) VALUES(?,?)");
-      $signIn->execute(array($fk_student,$danceId));
+      $this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();
+        $insertStudent = $this->db->prepare("INSERT INTO alumno(nombre, email) VALUES(?,?)");
+        $insertStudent->execute(array($nameStudent,$emailStudent));
+        $fk_student = $this->db->lastInsertId();
+        $signIn = $this->db->prepare("INSERT INTO inscripto(id_alumno, id_clase) VALUES(?,?)");
+        $signIn->execute(array($fk_student,$danceId));
+        $this->$db->commit();
+      } catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }
     }
 
     function getTeachers() {

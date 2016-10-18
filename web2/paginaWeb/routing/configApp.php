@@ -4,6 +4,7 @@
     public static $ACTION = 'action';
     public static $ACTION_HOME = 'home';
     public static $ACTION_DANCE = 'dance';
+    public static $ACTION_DANCE_ADD = 'add_dance';
     public static $ACTION_SIGN_UP = 'inscripcion';
     public static $ACTION_SIGN_UP_SUBSCRIBE = 'subscribe';
     public static $ACTION_SIGN_UP_UNSUBSCRIBE = 'unsubscribe';

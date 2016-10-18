@@ -16,6 +16,9 @@
       case (ConfigApp::$ACTION_DANCE):
         $danceController->showDance();
         break;
+      case (ConfigApp::$ACTION_DANCE_ADD):
+        $danceController->addDance();
+        break;
       // Contact form del sitio
       case (ConfigApp::$ACTION_CONTACT_US):
         $danceController->showContactUs();
