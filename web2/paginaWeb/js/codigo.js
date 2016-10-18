@@ -33,7 +33,7 @@ function webLoader(link) {
     });
 }
 
-$('#registroClase').submit(function(){
+$('#registroClase').on("submit",function() {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -47,7 +47,7 @@ $('#registroClase').submit(function(){
      webLoader("index.php?action=register");
    }
  });
-}
+});
 /*
  $('#inscribir').submit(function(){
    event.preventDefault();
