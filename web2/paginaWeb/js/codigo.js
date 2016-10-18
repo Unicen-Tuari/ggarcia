@@ -32,3 +32,37 @@ function webLoader(link) {
       }
     });
 }
+/*
+$('#asignar').submit(function(){
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+   method: "POST",
+   url: "index.php?action=assign_dance_teacher",
+   data: formData,
+   contentType: false,
+   cache: false,
+   processData:false,
+   success: function(data){
+     refreshList(data);
+     $('#addForm').trigger("reset");
+   }
+ });
+
+ $('#inscribir').submit(function(){
+   event.preventDefault();
+   var formData = new FormData(this);
+   $.ajax({
+    method: "POST",
+    url: "index.php?action=subscribe",
+    data: formData,
+    contentType: false,
+    cache: false,
+    processData:false,
+    success: function(data){
+      refreshList(data);
+      $('#addForm').trigger("reset");
+    }
+  });
+}
+*/

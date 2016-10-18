@@ -6,36 +6,45 @@
     private $view;
     private $model;
 
-    function __construct() {
+    public function __construct() {
       $this->view = new DanceView();
       $this->model = new DanceModel();
     }
 
-    function showBase() {
+    public function showBase() {
       $this->view->showWeb("templates/base.tpl");
     }
 
-    function showHome() {
+    public function showHome() {
       $this->view->showWeb("templates/home.tpl");
     }
 
-    function showDance() {
+    public function showDance() {
       $this->view->showWeb("templates/clases.tpl");
     }
 
-    function showContactUs() {
+    public function showContactUs() {
       $this->view->showWeb("templates/contact_us.tpl");
     }
 
-    function showRegister() {
-      $this->view->showWeb("templates/register.tpl");
+    public function showRegister() {
+      $dancesList = $this->model->getDances();
+      $teachersList = $this->model->getTeachers();
+      $this->view->showWebRegistry("templates/register.tpl", $dancesList, $teachersList);
     }
 
-    function showAssign() {
-      $this->view->showWeb("templates/inscripcion.tpl");
+    public function assign_dance_teacher() {
+
     }
 
-    function showError() {
+    public function showInscripcion() {
+      $dancesList = $this->model->getDances();
+      $studentsList = $this->model->getStudents();
+      $signUpList = $this->model->getStudentsByDance();
+      $this->view->showWebSignUp("templates/inscripcion.tpl", $dancesList, $studentsList, $signUpList);
+    }
+
+    public function showError() {
       $this->view->showWeb("templates/error.tpl");
     }
 

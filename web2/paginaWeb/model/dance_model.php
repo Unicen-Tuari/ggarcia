@@ -19,10 +19,10 @@
       return $danceList;
     }
 
-    function getStudentsByDance($danceId) {
+    function getStudentsByDance() {
       $studentList = [];
-      $select = $this->db->prepare("SELECT alumno.* FROM alumno INNER JOIN inscripto ON inscripto.id_alumno = alumno.id AND inscripto.id_clase = ?");
-      $select->execute(array($danceId));
+      $select = $this->db->prepare("SELECT inscripto.rowId, clase.id as 'claseId', clase.nombre as 'claseNombre', alumno.id as 'alumnoId', alumno.nombre as 'alumnoNombre', alumno.email as 'alumnoEmail' FROM inscripto INNER JOIN alumno ON alumno.id = inscripto.id_alumno INNER JOIN clase ON clase.id = inscripto.id_clase");
+      $select->execute();
       $students = $select->fetchAll(PDO::FETCH_ASSOC);
       foreach ($students as $student) {
         $studentList[] = $student;
@@ -36,6 +36,28 @@
       $fk_student = $this->db->lastInsertId();
       $signIn = $this->db->prepare("INSERT INTO inscripto(id_alumno, id_clase) VALUES(?,?)");
       $signIn->execute(array($fk_student,$danceId));
+    }
+
+    function getTeachers() {
+      $teacherList = [];
+      $select = $this->db->prepare("select * from profesor");
+      $select->execute();
+      $profes = $select->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($profes as $profe) {
+        $teacherList[] = $profe;
+      }
+      return $teacherList;
+    }
+
+    function getStudents() {
+      $studentsList = [];
+      $select = $this->db->prepare("select * from alumno");
+      $select->execute();
+      $alumnos = $select->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($alumnos as $alumno) {
+        $studentsList[] = $alumno;
+      }
+      return $studentsList;
     }
 
     function deleteSignIn($row){

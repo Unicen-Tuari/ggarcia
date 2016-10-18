@@ -22,11 +22,17 @@
         break;
       // Inscripciones del sitio
       case (ConfigApp::$ACTION_SIGN_UP):
-        $danceController->showSignUp();
+        $danceController->showInscripcion();
+        break;
+      case (ConfigApp::$ACTION_SIGN_UP_SUBSCRIBE):
+        $danceController->signUp();
         break;
       // Register form del sitio
       case (ConfigApp::$ACTION_REGISTER):
         $danceController->showRegister();
+        break;
+      case (ConfigApp::$ACTION_REGISTER_ASSIGN_DANCE_TEACHER):
+        $danceController->assign_dance_teacher();
         break;
       default:
         // si no hizo match, muestro home

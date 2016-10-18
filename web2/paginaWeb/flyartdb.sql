@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 21:43:42
+-- Tiempo de generación: 18-10-2016 a las 01:33:58
 -- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 7.0.8
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,9 +29,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumno` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `telefono` varchar(20) DEFAULT NULL
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`id`, `nombre`, `email`) VALUES
+(1, 'gabi', 'fda@da.com'),
+(2, 'fda', 'hjio'),
+(7, 'frfrr', 'nbnbn@xs'),
+(8, 'fdggghjj', 'fa@we'),
+(9, 'juop', 'dvsv'),
+(10, 'qwertyui', 'gdagf@dwv');
 
 -- --------------------------------------------------------
 
@@ -50,10 +61,12 @@ CREATE TABLE `clase` (
 --
 
 INSERT INTO `clase` (`id`, `nombre`, `id_profesor`) VALUES
-(2, 'baby', 1),
-(3, 'contorsion', 2),
-(4, 'contempo', 1),
-(5, 'telas', NULL);
+(1, 'baby', 3),
+(2, 'contemporaneo', 1),
+(3, 'clasico', 1),
+(4, 'hiphop', 2),
+(5, 'contorsion', 5),
+(6, 'teatro', 4);
 
 -- --------------------------------------------------------
 
@@ -62,9 +75,23 @@ INSERT INTO `clase` (`id`, `nombre`, `id_profesor`) VALUES
 --
 
 CREATE TABLE `inscripto` (
+  `rowId` int(11) NOT NULL,
   `id_alumno` int(11) NOT NULL,
   `id_clase` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Alumnos inscriptos en las clases.';
+
+--
+-- Volcado de datos para la tabla `inscripto`
+--
+
+INSERT INTO `inscripto` (`rowId`, `id_alumno`, `id_clase`) VALUES
+(1, 1, 2),
+(2, 1, 6),
+(3, 2, 1),
+(4, 7, 3),
+(5, 7, 5),
+(6, 9, 1),
+(7, 10, 4);
 
 -- --------------------------------------------------------
 
@@ -84,8 +111,11 @@ CREATE TABLE `profesor` (
 --
 
 INSERT INTO `profesor` (`id`, `nombre`, `email`, `telefono`) VALUES
-(1, 'gabriel', 'loco@gmail.com', '0249 154 673072'),
-(2, 'lucia', 'lu@weef.com', NULL);
+(1, 'Fernanda García', 'fer@gmail.com', '249-4256894'),
+(2, 'Jacqueline Paramá', 'jparama@hotmail.com', NULL),
+(3, 'Florencia Majorel', 'florm@gmail.com', '2244-56895'),
+(4, 'María José Medici', 'majo@yahoo.com', NULL),
+(5, 'Panchito Flores', 'jardinero@hotmail.com', '249-4325877');
 
 --
 -- Índices para tablas volcadas
@@ -110,6 +140,7 @@ ALTER TABLE `clase`
 --
 ALTER TABLE `inscripto`
   ADD PRIMARY KEY (`id_alumno`,`id_clase`),
+  ADD UNIQUE KEY `rowId` (`rowId`),
   ADD KEY `id_alumno` (`id_alumno`),
   ADD KEY `id_clase` (`id_clase`);
 
@@ -128,17 +159,22 @@ ALTER TABLE `profesor`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `inscripto`
+--
+ALTER TABLE `inscripto`
+  MODIFY `rowId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `profesor`
 --
 ALTER TABLE `profesor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
