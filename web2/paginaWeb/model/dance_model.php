@@ -20,16 +20,16 @@
     }
 
     function addDance($name) {
-      $this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
-        $this->$db->beginTransaction();
+        $this->$db->beginTransaction();*/
         $insertDance = $this->db->prepare("INSERT INTO clase(nombre) VALUES(?)");
-        $insertDance->execute($name);
+        $insertDance->execute(array($name));
         $this->$db->commit();
-      } catch(PDOException $ex) {
+      /*} catch(PDOException $ex) {
         $this->$db->rollBack();
         log($ex->getMessage());
-      }
+      }*/
     }
 
     function getStudentsByDance() {
@@ -82,10 +82,30 @@
     }
 
     function unsubscribe($row){
-      $delete = $this->db->prepare("DELETE FROM inscripto WHERE rowId=?");
-      $delete->execute([$row]);
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $delete = $this->db->prepare("DELETE FROM inscripto WHERE rowId=?");
+        $delete->execute(array($row));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
     }
 
+    function assign_dance_teacher($danza,$profe){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $update = $this->db->prepare("UPDATE FROM inscripto WHERE rowId=?");
+        $update->execute(array($row));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
 
 /*
 

@@ -7,13 +7,13 @@
             <h3 class="panel-title">Alta de Clase</h3>
           </div>
           <div class="panel-body">
-            <form>
+            <form id="registroClase">
               <div class="form-group">
                 <label for="name">Nombre Danza</label>
                 <input type="text" class="form-control" id="nameDanceForm" placeholder="Ingrese nombre">
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="registroClase">Registrar</button>
+                <button type="submit" class="btn btn-primary">Registrar</button>
               </div>
             </form>
           </div>
@@ -24,7 +24,7 @@
             <h3 class="panel-title">Asignación de Profesor a Clase</h3>
           </div>
           <div class="panel-body">
-            <form>
+            <form id="asignar">
               <div class="form-group">
                 <label for="selDanza">Danza</label>
                 <select class="form-control" id="selDanza">
@@ -35,14 +35,14 @@
               </div>
               <div class="form-group">
                 <label for="profeAsignado">Profesor</label>
-                <select class="form-control" id="idProfeAsignado">
+                <select class="form-control" id="selProfe">
                   {foreach from=$profes item=profe}
                     <option value="{$profe['id']}">{$profe['nombre']}</option>
                   {/foreach}
                 </select>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="asignar">Asignar</button>
+                <button type="submit" class="btn btn-primary">Asignar</button>
               </div>
             </form>
           </div>

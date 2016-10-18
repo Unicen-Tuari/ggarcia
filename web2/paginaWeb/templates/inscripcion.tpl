@@ -28,7 +28,7 @@
         {foreach from=$inscriptos item=sign}
         <p>
           {$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}
-          <a href="#" onclick="deleteSignUp({$sign['rowId']})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+          <a href="#" data-id="{$sign['rowId']}" class="delete_btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
         </p>
         {/foreach}
       </div>

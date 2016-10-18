@@ -37,7 +37,7 @@
     }
 
     public function assign_dance_teacher() {
-
+      $this->model->assign_dance_teacher($_REQUEST['idDanza'],$_REQUEST['idProfe']);
     }
 
     public function showInscripcion() {
@@ -48,8 +48,7 @@
     }
 
     public function unsubscribe() {
-      echo $_REQUEST['row'];
-      $this->model->unsubscribe($_REQUEST['row']);
+      $this->model->unsubscribe($_REQUEST['dataId']);
     }
 
     public function showError() {
