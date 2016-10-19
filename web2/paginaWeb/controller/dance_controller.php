@@ -20,19 +20,27 @@
     }
 
     public function showDance() {
-      $this->view->showWeb("templates/clases.tpl","");
+      $dancesList = $this->model->getDances();
+      $this->view->showDance("templates/clases.tpl",$dancesList);
     }
+
     public function addDance() {
-      $this->model->addDance($_REQUEST['nameD']);
+      $this->model->addDance($_REQUEST['nameD'],$_REQUEST['infoD']);
     }
 
     public function deleteDance() {
-      /*$teacher = $this->model->getTeacherByDance($_REQUEST['dataId']);
-      if (IS_NULL($teacher))
-        $this->view->showWeb("templates/error.tpl","La clase tiene un profesor a cargo, desasigne al profesor "+ $teacher['nombre']);
-      else
-      */
+      $teacher = $this->model->getTeacherByDance($_REQUEST['dataId']);
+      if (IS_NULL($teacher)) {
+        return false;
+      } else {
         $this->model->deleteDance($_REQUEST['dataId']);
+        return true;
+      }
+    }
+
+    public function infoDance() {
+      $info = $this->model->getDanceById($_REQUEST['dataId']);
+      $this->view->contenidoDanza("templates/infoDanza.tpl", $info);
     }
 
     public function showContactUs() {
@@ -42,22 +50,45 @@
     public function showRegister() {
       $dancesList = $this->model->getDances();
       $teachersList = $this->model->getTeachers();
-      $this->view->showWebRegistry("templates/register.tpl", $dancesList, $teachersList);
+      $studentsList = $this->model->getStudents();
+      $this->view->showWebRegistry("templates/register.tpl", $dancesList, $teachersList, $studentsList);
     }
 
     public function assign_dance_teacher() {
       $this->model->assign_dance_teacher($_REQUEST['idDanza'],$_REQUEST['idProfe']);
     }
 
+    public function deallocate_dance_teacher() {
+      $this->model->deallocate_dance_teacher($_REQUEST['dataId']);
+    }
+
     public function addPerson() {
       $this->model->addPerson($_REQUEST['person'],$_REQUEST['nameP'],$_REQUEST['email'],$_REQUEST['tel']);
+    }
+
+    public function showUpdatePerson() {
+      if ($_REQUEST['tipo'] == 'A') {
+        $datos = $this->model->getStudentById($_REQUEST['dataId']);
+      } elseif ($_REQUEST['tipo'] == 'P') {
+        $datos = $this->model->getTeacherById($_REQUEST['dataId']);
+      }
+      $this->view->showUpdatePerson("templates/updatePersona.tpl", $_REQUEST['tipo'],$datos);
     }
 
     public function showInscripcion() {
       $dancesList = $this->model->getDances();
       $studentsList = $this->model->getStudents();
-      $signUpList = $this->model->getStudentsByDance();
+      $signUpList = $this->model->getStudentsByDance(NULL);
       $this->view->showWebSignUp("templates/inscripcion.tpl", $dancesList, $studentsList, $signUpList);
+    }
+
+    public function getInscAlumnos() {
+      $studentsList = $this->model->getInfoStudentsByDance($_REQUEST['dataId']);
+      $this->view->showInfoInsc("templates/infoInsc.tpl",$studentsList);
+    }
+
+    public function signUp() {
+      $this->model->signUp($_REQUEST['idDance'],$_REQUEST['idAlumno']);
     }
 
     public function unsubscribe() {
@@ -65,7 +96,7 @@
     }
 
     public function showError() {
-      $this->view->showWeb("templates/error.tpl","No existe la página, intente otras opciones");
+      $this->view->showWeb("templates/error.tpl",$_REQUEST['msg']);
     }
 
   }

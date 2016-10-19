@@ -38,10 +38,11 @@
       </div>
     </div>
     <div class="col-md-6 col-md-6-offset">
-      <p class="lead">Info estilo de danza</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      <p>Officia molestiae, nisi nemo aspernatur unde fugiat dolore, blanditiis, in non dolores tempora modi nihil, sapiente illo expedita veniam hic aliquam repudiandae.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <select class="form-control" id="selDanzaInfo">
+        {foreach from=$danzas item=danza}
+          <option value="{$danza['id']}">{$danza['nombre']}</option>
+        {/foreach}
+      </select>
       <div id="infoItem"></div>
     </div>
   </div>

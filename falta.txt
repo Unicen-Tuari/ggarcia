@@ -1,9 +1,0 @@
-en dance_controller
-poner las funciones que vean si la variable esta seteada y no es null
-
-dance_model
-si queda tiempo poner los try catch
-poner un aviso de que todo salió bien (quizas en js)
-
-
-controlar los nombres de las funciones, es un quilombo

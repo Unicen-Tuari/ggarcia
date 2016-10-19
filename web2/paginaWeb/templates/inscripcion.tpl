@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form method="post">
+  <form id="inscribir">
     <div class="form-group">
       <label for="selDanza">Danza</label>
       <select class="form-control" id="selDanza">
@@ -18,7 +18,7 @@
       </select>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary" id="inscribir">Inscribirse</button>
+      <button type="submit" class="btn btn-primary">Inscribirse</button>
     </div>
   </form>
 
@@ -27,7 +27,7 @@
       <div class="row">
         {foreach from=$inscriptos item=sign}
         <p>
-          {$sign['rowId']} - {$sign['claseId']} - {$sign['claseNombre']} - {$sign['alumnoId']} - {$sign['alumnoNombre']} - {$sign['alumnoEmail']}
+          {$sign['claseNombre']} - {$sign['alumnoNombre']}
           <a href="#" data-id="{$sign['rowId']}" class="delete_btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
         </p>
         {/foreach}

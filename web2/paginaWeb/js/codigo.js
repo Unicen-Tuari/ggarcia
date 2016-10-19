@@ -16,6 +16,16 @@ function setearFuncionalidad() {
     event.preventDefault();
     webLoader("index.php?action=register")});
 
+  // imagenes de danzas
+  $("#selDanzaInfo").on("change", function() {
+    divLoader("index.php?action=info_danza",$("#selDanzaInfo").val());
+  });
+
+  // cargo los alumnos de una clase
+  $('.info_btn').on("click",function() {
+    divLoaderInscripto("index.php?action=info_danza_inscripto",$(this).attr("data-id"));
+  })
+
   // borra la inscripción de un alumno a una clase
   $('.delete_btn').on("click",function() {
     event.preventDefault();
@@ -28,12 +38,29 @@ function setearFuncionalidad() {
     });
   })
 
+  // alta de una inscripcion de alumno/danza
+  $('#inscribir').on("submit",function() {
+    event.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+     method: "POST",
+     url: "index.php?action=subscribe&idDance=" + $("#selDanza").val() + "&idAlumno=" + $("#student").val(),
+     data: formData,
+     contentType: false,
+     cache: false,
+     processData:false,
+     success: function(data){
+       webLoader("index.php?action=inscripcion");
+     }
+   });
+  });
+
   // borra la danza
   $('.deleteDanza_btn').on("click",function() {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "index.php?action=delete_Dance&dataId=" + $(this).attr("data-idDance"),
+      url: "index.php?action=delete_dance&dataId=" + $(this).attr("data-idDance"),
       success: function(data) {
         webLoader("index.php?action=register");
       }
@@ -46,7 +73,7 @@ function setearFuncionalidad() {
     var formData = new FormData(this);
     $.ajax({
      method: "POST",
-     url: "index.php?action=add_dance&nameD=" + $("#nameDanceForm").val(),
+     url: "index.php?action=add_dance&nameD=" + $("#nameDanceForm").val() + "&infoD=" + $("#infoDanceForm").val(),
      data: formData,
      contentType: false,
      cache: false,
@@ -74,22 +101,52 @@ function setearFuncionalidad() {
    });
   });
 
+  // desasignación de un profesor a una clase
+  $('#desasignar').on("click",function() {
+    event.preventDefault();
+    if ($("#selDanza").val()) {
+      $.ajax({
+        method: "POST",
+        url: "index.php?action=deallocate_dance&dataId=" + $("#selDanza").val(),
+        success: function(data) {
+          webLoader("index.php?action=register");
+        }
+      });
+    } else {
+      alert("Debe seleccionar una danza para desasignar al profesor a cargo");
+    }
+  });
+
   // alta de una persona
   $('#formPersona').on("submit",function() {
     event.preventDefault();
     var formData = new FormData(this);
-    $.ajax({
-     method: "POST",
-     url: "index.php?action=add_person&person=" + $("#sel").val() + "&nameP=" + $("#namePersonForm").val() + "&email=" + $("#emailForm").val() + "&tel=" + $("#telForm").val(),
-     data: formData,
-     contentType: false,
-     cache: false,
-     processData:false,
-     success: function(data){
-       webLoader("index.php?action=register");
-     }
-   });
+    if ($("#sel").val()) {
+      $.ajax({
+       method: "POST",
+       url: "index.php?action=add_person&person=" + $("#sel").val() + "&nameP=" + $("#namePersonForm").val() + "&email=" + $("#emailForm").val() + "&tel=" + $("#telForm").val(),
+       data: formData,
+       contentType: false,
+       cache: false,
+       processData:false,
+       success: function(data){
+         webLoader("index.php?action=register");
+       }
+     });
+   } else {
+     alert("Debe seleccionar un tipo de persona: Profesor/Alumno");
+   }
   });
+
+  // modificación de un alumno
+  $('.updateAlumno_btn').on("click",function() {
+    webLoader("index.php?action=show_update_person&tipo=A&dataId=" + $(this).attr("data-id"));
+  })
+
+  // modificación de un alumno
+  $('.updateProfesor_btn').on("click",function() {
+    webLoader("index.php?action=show_update_person&tipo=P&dataId=" + $(this).attr("data-id"));
+  })
 
 }
 
@@ -109,6 +166,39 @@ function webLoader(link) {
       },
       error: function(jqxml, status, errorThrown) {
         $("#content").text("No se pudo cargar la página");
+        console.log(errorThrown);
+      }
+    });
+}
+
+// fn que obtiene html a cargar en un div agregando funcionalidad
+function divLoader(link,id) {
+  $.ajax({
+      type:"GET",
+      url: link + "&dataId=" + id,
+      dataType: "html",
+      success: function(data) {
+        $("#infoItem").html(data);
+        setearFuncionalidad();
+      },
+      error: function(jqxml, status, errorThrown) {
+        $("#infoItem").text("No se pudo cargar la página");
+        console.log(errorThrown);
+      }
+    });
+}
+
+function divLoaderInscripto(link,id) {
+  $.ajax({
+      type:"GET",
+      url: link + "&dataId=" + id,
+      dataType: "html",
+      success: function(data) {
+        $("#sign2dance").html(data);
+        setearFuncionalidad();
+      },
+      error: function(jqxml, status, errorThrown) {
+        $("#infoItem").text("No se pudo cargar la página");
         console.log(errorThrown);
       }
     });

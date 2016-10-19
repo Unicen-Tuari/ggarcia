@@ -19,12 +19,12 @@
       return $danceList;
     }
 
-    function addDance($name) {
+    function addDance($name,$info) {
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
         $this->$db->beginTransaction();*/
-        $insertDance = $this->db->prepare("INSERT INTO clase(nombre) VALUES(?)");
-        $insertDance->execute(array($name));
+        $insertDance = $this->db->prepare("INSERT INTO clase(nombre,informacion) VALUES(?,?)");
+        $insertDance->execute(array($name,$info));
         $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();
@@ -37,7 +37,7 @@
       try {
         $this->$db->beginTransaction();*/
         $delete = $this->db->prepare("DELETE FROM clase WHERE id=?");
-        $delete->execute(array($row));
+        $delete->execute(array($idDance));
         $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();
@@ -45,21 +45,43 @@
       }*/
     }
 
+    function getDanceById($idDance) {
+      $danceList = [];
+      $select = $this->db->prepare("SELECT * FROM clase WHERE id = ?");
+      $select->execute(array($idDance));
+      $dances = $select->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($dances as $dance) {
+        $danceList[] = $dance;
+      }
+      return $danceList;
+    }
+
     function getTeacherByDance($idDance) {
       $teacherList = [];
       $select = $this->db->prepare("SELECT profesor.* FROM profesor INNER JOIN clase ON clase.id_profesor = profesor.id and clase.id = ?");
       $select->execute(array($idDance));
-      $teacherList = $select->fetchAll(PDO::FETCH_ASSOC);
+      $teachers = $select->fetchAll(PDO::FETCH_ASSOC);
       foreach ($teachers as $teacher) {
         $teacherList[] = $teacher;
       }
       return $teacherList;
     }
 
-    function getStudentsByDance() {
+    function getStudentsByDance($danceId) {
       $studentList = [];
       $select = $this->db->prepare("SELECT inscripto.rowId, clase.id as 'claseId', clase.nombre as 'claseNombre', alumno.id as 'alumnoId', alumno.nombre as 'alumnoNombre', alumno.email as 'alumnoEmail' FROM inscripto INNER JOIN alumno ON alumno.id = inscripto.id_alumno INNER JOIN clase ON clase.id = inscripto.id_clase");
-      $select->execute();
+      $select->execute(array($danceId));
+      $students = $select->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($students as $student) {
+        $studentList[] = $student;
+      }
+      return $studentList;
+    }
+
+    function getInfoStudentsByDance($danceId) {
+      $studentList = [];
+        $select = $this->db->prepare("SELECT alumno.nombre, alumno.email, alumno.telefono FROM alumno INNER JOIN inscripto ON alumno.id = inscripto.id_alumno INNER JOIN clase ON clase.id = inscripto.id_clase WHERE clase.id = ?");
+      $select->execute(array($danceId));
       $students = $select->fetchAll(PDO::FETCH_ASSOC);
       foreach ($students as $student) {
         $studentList[] = $student;
@@ -105,6 +127,35 @@
       return $studentsList;
     }
 
+    function getStudentById($id) {
+      $student;
+      $select = $this->db->prepare("SELECT * FROM alumno WHERE id = ?");
+      $select->execute(array($id));
+      $student = $select->fetchAll(PDO::FETCH_ASSOC);
+      return $student;
+    }
+
+    function getTeacherById($id) {
+      $student;
+      $select = $this->db->prepare("SELECT * FROM alumno WHERE id = ?");
+      $select->execute(array($id));
+      $student = $select->fetchAll(PDO::FETCH_ASSOC);
+      return $student;
+    }
+
+    function signUp($danza,$alumno){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $insert = $this->db->prepare("INSERT INTO inscripto(id_clase,id_alumno) VALUES(?,?)");
+        $insert->execute(array($danza,$alumno));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
     function unsubscribe($row){
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
@@ -135,12 +186,42 @@
       }*/
     }
 
+    function updatePerson($tipoTabla,$nombre,$email,$tel){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        if ($tipoTabla == 'A')
+          $update = $this->db->prepare("UPDATE alumno(nombre,email,telefono) VALUES (?,?,?)");
+        elseif ($tabla == 'P') {
+          $update = $this->db->prepare("UPDATE profesor(nombre,email,telefono) VALUES (?,?,?)");
+        }
+        $update->execute(array($nombre,$email,$tel));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
     function assign_dance_teacher($danza,$profe){
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
         $this->$db->beginTransaction();*/
         $update = $this->db->prepare("UPDATE clase SET id_profesor = ? WHERE id = ?");
         $update->execute(array($profe,$danza));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
+    function deallocate_dance_teacher($danza){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $update = $this->db->prepare("UPDATE clase SET id_profesor = NULL WHERE id = ?");
+        $update->execute(array($danza));
         $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();

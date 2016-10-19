@@ -22,6 +22,9 @@
       case (ConfigApp::$ACTION_DANCE_DELETE):
         $danceController->deleteDance();
         break;
+      case (ConfigApp::$ACTION_DANCE_INFO):
+        $danceController->infoDance();
+        break;
       // Contact form del sitio
       case (ConfigApp::$ACTION_CONTACT_US):
         $danceController->showContactUs();
@@ -36,6 +39,9 @@
       case (ConfigApp::$ACTION_SIGN_UP_UNSUBSCRIBE):
         $danceController->unsubscribe();
         break;
+      case (ConfigApp::$ACTION_DANCE_INFO_INSC):
+        $danceController->getInscAlumnos();
+        break;
       // Register form del sitio
       case (ConfigApp::$ACTION_REGISTER):
         $danceController->showRegister();
@@ -43,8 +49,17 @@
       case (ConfigApp::$ACTION_REGISTER_ADD_PERSON):
         $danceController->addPerson();
         break;
+      case (ConfigApp::$ACTION_REGISTER_SHOW_UPDATE_PERSON):
+        $danceController->showUpdatePerson();
+        break;
       case (ConfigApp::$ACTION_REGISTER_ASSIGN_DANCE_TEACHER):
         $danceController->assign_dance_teacher();
+        break;
+      case (ConfigApp::$ACTION_REGISTER_DEALLOCATE_DANCE_TEACHER):
+        $danceController->deallocate_dance_teacher();
+        break;
+      case (ConfigApp::$ACTION_ERROR):
+        $danceController->showError();
         break;
       default:
         // si no hizo match, muestro home
