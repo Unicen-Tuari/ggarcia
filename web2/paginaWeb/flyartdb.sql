@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2016 a las 01:33:58
+-- Tiempo de generación: 19-10-2016 a las 11:55:35
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.23
 
@@ -29,20 +29,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumno` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `telefono` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `alumno`
 --
 
-INSERT INTO `alumno` (`id`, `nombre`, `email`) VALUES
-(1, 'gabi', 'fda@da.com'),
-(2, 'fda', 'hjio'),
-(7, 'frfrr', 'nbnbn@xs'),
-(8, 'fdggghjj', 'fa@we'),
-(9, 'juop', 'dvsv'),
-(10, 'qwertyui', 'gdagf@dwv');
+INSERT INTO `alumno` (`id`, `nombre`, `email`, `telefono`) VALUES
+(1, 'gabi', 'fda@da.com', NULL),
+(2, 'fda', 'hjio', NULL),
+(7, 'frfrr', 'nbnbn@xs', NULL),
+(8, 'fdggghjj', 'fa@we', NULL),
+(9, 'juop', 'dvsv', NULL),
+(10, 'qwertyui', 'gdagf@dwv', NULL),
+(11, '', 'aaaa@gmail.com', 1212),
+(12, 'bbb', 'bbb@eds.com', 0);
 
 -- --------------------------------------------------------
 
@@ -66,7 +69,8 @@ INSERT INTO `clase` (`id`, `nombre`, `id_profesor`) VALUES
 (3, 'clasico', 1),
 (4, 'hiphop', 2),
 (5, 'contorsion', 5),
-(6, 'teatro', 4);
+(6, 'teatro', 1),
+(7, 'hoysone', 1);
 
 -- --------------------------------------------------------
 
@@ -159,12 +163,12 @@ ALTER TABLE `profesor`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `inscripto`
 --

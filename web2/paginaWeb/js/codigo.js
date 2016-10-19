@@ -62,6 +62,23 @@ function setearFuncionalidad() {
    });
   });
 
+  // alta de una persona
+  $('#formPersona').on("submit",function() {
+    event.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+     method: "POST",
+     url: "index.php?action=add_person&person=" + $("#sel").val() + "&nameP=" + $("#namePersonForm").val() + "&email=" + $("#emailForm").val() + "&tel=" + $("#telForm").val(),
+     data: formData,
+     contentType: false,
+     cache: false,
+     processData:false,
+     success: function(data){
+       webLoader("index.php?action=register");
+     }
+   });
+  });
+
 }
 
 $(document).ready(function() {

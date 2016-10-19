@@ -37,6 +37,9 @@
       case (ConfigApp::$ACTION_REGISTER):
         $danceController->showRegister();
         break;
+      case (ConfigApp::$ACTION_REGISTER_ADD_PERSON):
+        $danceController->addPerson();
+        break;
       case (ConfigApp::$ACTION_REGISTER_ASSIGN_DANCE_TEACHER):
         $danceController->assign_dance_teacher();
         break;

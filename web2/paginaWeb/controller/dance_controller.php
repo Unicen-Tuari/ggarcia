@@ -40,6 +40,10 @@
       $this->model->assign_dance_teacher($_REQUEST['idDanza'],$_REQUEST['idProfe']);
     }
 
+    public function addPerson() {
+      $this->model->addPerson($_REQUEST['person'],$_REQUEST['nameP'],$_REQUEST['email'],$_REQUEST['tel']);
+    }
+
     public function showInscripcion() {
       $dancesList = $this->model->getDances();
       $studentsList = $this->model->getStudents();

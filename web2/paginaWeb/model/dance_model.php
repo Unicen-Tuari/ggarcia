@@ -94,12 +94,29 @@
       }*/
     }
 
+    function addPerson($tabla,$nombre,$email,$tel){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        if ($tabla == 'alumno')
+          $insert = $this->db->prepare("INSERT INTO alumno(nombre,email,telefono) VALUES (?,?,?)");
+        elseif ($tabla == 'profesor') {
+          $insert = $this->db->prepare("INSERT INTO profesor(nombre,email,telefono) VALUES (?,?,?)");
+        }
+        $insert->execute(array($nombre,$email,$tel));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
     function assign_dance_teacher($danza,$profe){
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
         $this->$db->beginTransaction();*/
-        $update = $this->db->prepare("UPDATE FROM inscripto WHERE rowId=?");
-        $update->execute(array($row));
+        $update = $this->db->prepare("UPDATE clase SET id_profesor = ? WHERE id = ?");
+        $update->execute(array($profe,$danza));
         $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();

@@ -1,0 +1,8 @@
+﻿en dance_controller
+poner las funciones que vean si la variable esta seteada y no es null
+
+dance_model
+si queda tiempo poner los try catch
+poner un aviso de que todo salió bien (quizas en js)
+
+si dejo un campo sin completar me lo mete como un 0 en vez de como null
