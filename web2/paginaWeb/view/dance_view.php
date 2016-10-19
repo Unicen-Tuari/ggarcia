@@ -8,7 +8,8 @@
       $this->smarty = new Smarty();
     }
 
-    public function showWeb($nameWeb) {
+    public function showWeb($nameWeb,$msg) {
+      $this->smarty->assign('msg', $msg);
       $this->smarty->display($nameWeb);
     }
 

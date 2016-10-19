@@ -32,6 +32,30 @@
       }*/
     }
 
+    function deleteDance($idDance){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $delete = $this->db->prepare("DELETE FROM clase WHERE id=?");
+        $delete->execute(array($row));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
+    function getTeacherByDance($idDance) {
+      $teacherList = [];
+      $select = $this->db->prepare("SELECT profesor.* FROM profesor INNER JOIN clase ON clase.id_profesor = profesor.id and clase.id = ?");
+      $select->execute(array($idDance));
+      $teacherList = $select->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($teachers as $teacher) {
+        $teacherList[] = $teacher;
+      }
+      return $teacherList;
+    }
+
     function getStudentsByDance() {
       $studentList = [];
       $select = $this->db->prepare("SELECT inscripto.rowId, clase.id as 'claseId', clase.nombre as 'claseNombre', alumno.id as 'alumnoId', alumno.nombre as 'alumnoNombre', alumno.email as 'alumnoEmail' FROM inscripto INNER JOIN alumno ON alumno.id = inscripto.id_alumno INNER JOIN clase ON clase.id = inscripto.id_clase");

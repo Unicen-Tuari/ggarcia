@@ -28,6 +28,18 @@ function setearFuncionalidad() {
     });
   })
 
+  // borra la danza
+  $('.deleteDanza_btn').on("click",function() {
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: "index.php?action=delete_Dance&dataId=" + $(this).attr("data-idDance"),
+      success: function(data) {
+        webLoader("index.php?action=register");
+      }
+    });
+  })
+
   // alta de una danza sin profesor asignado
   $('#registroClase').on("submit",function() {
     event.preventDefault();

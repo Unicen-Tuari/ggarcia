@@ -12,22 +12,31 @@
     }
 
     public function showBase() {
-      $this->view->showWeb("templates/base.tpl");
+      $this->view->showWeb("templates/base.tpl","");
     }
 
     public function showHome() {
-      $this->view->showWeb("templates/home.tpl");
+      $this->view->showWeb("templates/home.tpl","");
     }
 
     public function showDance() {
-      $this->view->showWeb("templates/clases.tpl");
+      $this->view->showWeb("templates/clases.tpl","");
     }
     public function addDance() {
       $this->model->addDance($_REQUEST['nameD']);
     }
 
+    public function deleteDance() {
+      /*$teacher = $this->model->getTeacherByDance($_REQUEST['dataId']);
+      if (IS_NULL($teacher))
+        $this->view->showWeb("templates/error.tpl","La clase tiene un profesor a cargo, desasigne al profesor "+ $teacher['nombre']);
+      else
+      */
+        $this->model->deleteDance($_REQUEST['dataId']);
+    }
+
     public function showContactUs() {
-      $this->view->showWeb("templates/contact_us.tpl");
+      $this->view->showWeb("templates/contact_us.tpl","");
     }
 
     public function showRegister() {
@@ -56,7 +65,7 @@
     }
 
     public function showError() {
-      $this->view->showWeb("templates/error.tpl");
+      $this->view->showWeb("templates/error.tpl","No existe la página, intente otras opciones");
     }
 
   }

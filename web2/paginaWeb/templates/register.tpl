@@ -65,21 +65,14 @@
           </div>
           <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
-              <form id="eliminarDanza">
-                <div class="form-group">
-                  <label for="selDanza">Danza</label>
-                  <select class="form-control" id="selDanzaDelete">
-                    {foreach from=$danzas item=danza}
-                      <option></option>
-                      <option value="{$danza['id']}">{$danza['nombre']}</option>
-                    {/foreach}
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Eliminar</button>
-                </div>
-              </form>
+              <div class="form-group">
+                {foreach from=$danzas item=danza}
+                <p>
+                  {$danza['nombre']}
+                  <a href="#" data-idDance="{$danza['id']}" class="deleteDanza_btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                </p>
+                {/foreach}
+              </div>
             </div>
           </div>
         </div>
