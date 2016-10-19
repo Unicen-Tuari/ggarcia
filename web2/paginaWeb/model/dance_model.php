@@ -45,6 +45,32 @@
       }*/
     }
 
+    function deleteAlumno($id){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $delete = $this->db->prepare("DELETE FROM alumno WHERE id=?");
+        $delete->execute(array($id));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
+    function deleteProfesor($id){
+      /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->$db->beginTransaction();*/
+        $delete = $this->db->prepare("DELETE FROM profesor WHERE id=?");
+        $delete->execute(array($id));
+        $this->$db->commit();
+      /*} catch(PDOException $ex) {
+        $this->$db->rollBack();
+        log($ex->getMessage());
+      }*/
+    }
+
     function getDanceById($idDance) {
       $danceList = [];
       $select = $this->db->prepare("SELECT * FROM clase WHERE id = ?");

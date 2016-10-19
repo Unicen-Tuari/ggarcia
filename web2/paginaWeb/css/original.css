@@ -11,7 +11,7 @@ body {
 	background-color: #9A011F;
 }
 
-.form-group {
+.form-group, .info {
 	color: #848484;
 }
 

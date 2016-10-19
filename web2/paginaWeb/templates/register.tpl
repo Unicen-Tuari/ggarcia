@@ -125,7 +125,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion2" href="#collapse5">Actualizar datos Persona</a>
+              <a data-toggle="collapse" data-parent="#accordion2" href="#collapse5">Actualizar/Eliminar Persona</a>
             </h4>
           </div>
           <div id="collapse5" class="panel-collapse collapse">
@@ -135,8 +135,12 @@
                 <div id="profe" class="collapse">
                   <ul>
                     {foreach from=$profes item=profe}
-                      <li>{$profe['nombre']} <a href="#" data-idDance="{$danza['id']}" class="updateProfesor_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
-                      {/foreach}
+                      <li>
+                        {$profe['nombre']}
+                        <a href="#" data-id="{$profe['id']}" class="updateProfesor_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a href="#" data-id="{$profe['id']}" class="deleteProfesor_btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                      </li>
+                    {/foreach}
                   </ul>
                 </div>
               </div>
@@ -145,12 +149,17 @@
                 <div id="alum" class="collapse">
                   <ul>
                     {foreach from=$alumnos item=alumno}
-                      <li>{$alumno['nombre']} <a href="#" data-id="{$alumno['id']}" class="updateAlumno_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                      <li>
+                        {$alumno['nombre']}
+                        <a href="#" data-id="{$alumno['id']}" class="updateAlumno_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a href="#" data-id="{$alumno['id']}" class="deleteAlumno_btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                      </li>
                     {/foreach}
                   </ul>
                 </div>
               </div>
             </div>
+          <p class="info">No se puede eliminar una persona si est&aacute; inscripta/asignada a una danza</p>
           </div>
 
       </div>

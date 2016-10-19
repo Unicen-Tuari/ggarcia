@@ -66,6 +66,14 @@
       $this->model->addPerson($_REQUEST['person'],$_REQUEST['nameP'],$_REQUEST['email'],$_REQUEST['tel']);
     }
 
+    public function deletePerson() {
+      if ($_REQUEST['tipo'] == 'A') {
+        $this->model->deleteAlumno($_REQUEST['dataId']);
+      } elseif ($_REQUEST['tipo'] == 'P') {
+        $this->model->deleteProfesor($_REQUEST['dataId']);
+      }
+    }
+
     public function showUpdatePerson() {
       if ($_REQUEST['tipo'] == 'A') {
         $datos = $this->model->getStudentById($_REQUEST['dataId']);

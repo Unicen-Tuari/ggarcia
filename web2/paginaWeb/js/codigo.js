@@ -18,24 +18,49 @@ function setearFuncionalidad() {
 
   // imagenes de danzas
   $("#selDanzaInfo").on("change", function() {
-    divLoader("index.php?action=info_danza",$("#selDanzaInfo").val());
+    divLoader("index.php?action=info_danza",$("#selDanzaInfo").val(),'informacion');
   });
 
   // cargo los alumnos de una clase
   $('.info_btn').on("click",function() {
-    divLoaderInscripto("index.php?action=info_danza_inscripto",$(this).attr("data-id"));
+    divLoader("index.php?action=info_danza_inscripto",$(this).attr("data-id"),'inscripto');
   })
 
   // borra la inscripción de un alumno a una clase
   $('.delete_btn').on("click",function() {
+    executeAjaxPOST("index.php?action=unsubscribe&dataId=" + $(this).attr("data-id"),"index.php?action=inscripcion");
+  })
+
+  // borra la inscripción de un alumno
+  $('.deleteAlumno_btn').on("click",function() {
+    executeAjaxPOST("index.php?action=delete_person&tipo=A&dataId=" + $(this).attr("data-id"),"index.php?action=register");
+  })
+  // borra la inscripción de un profesor
+  $('.deleteProfesor_btn').on("click",function() {
+    executeAjaxPOST("index.php?action=delete_person&tipo=P&dataId=" + $(this).attr("data-id"),"index.php?action=register");
+  })
+
+  // actualiza la inscripción de un alumno
+  $('.updateAlumno_btn').on("click",function() {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "index.php?action=unsubscribe&dataId=" + $(this).attr("data-id"),
+      url: "index.php?action=show_update_person&tipo=A&dataId=" + $(this).attr("data-id"),
       success: function(data) {
         webLoader("index.php?action=inscripcion");
       }
     });
+  })
+  // actualiza la inscripción de un profesor
+  $('.updateProfesor_btn').on("click",function() {
+    /*event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: "index.php?action=update_profesor&dataId=" + $(this).attr("data-id"),
+      success: function(data) {
+        webLoader("index.php?action=inscripcion");
+      }
+    });*/
   })
 
   // alta de una inscripcion de alumno/danza
@@ -171,35 +196,38 @@ function webLoader(link) {
     });
 }
 
-// fn que obtiene html a cargar en un div agregando funcionalidad
-function divLoader(link,id) {
+function divLoader(link,id,solapa) {
   $.ajax({
       type:"GET",
       url: link + "&dataId=" + id,
       dataType: "html",
       success: function(data) {
-        $("#infoItem").html(data);
-        setearFuncionalidad();
+        switch(solapa) {
+          case inscripto: {
+            $("#sign2dance").html(data);
+            setearFuncionalidad();
+            break;
+          }
+          case informacion: {
+            $("#infoItem").html(data);
+            setearFuncionalidad();
+            break;
+          }
+        }
       },
       error: function(jqxml, status, errorThrown) {
-        $("#infoItem").text("No se pudo cargar la página");
         console.log(errorThrown);
       }
     });
 }
 
-function divLoaderInscripto(link,id) {
+function executeAjaxPOST(urlAjax,urlSuccess) {
+  event.preventDefault();
   $.ajax({
-      type:"GET",
-      url: link + "&dataId=" + id,
-      dataType: "html",
-      success: function(data) {
-        $("#sign2dance").html(data);
-        setearFuncionalidad();
-      },
-      error: function(jqxml, status, errorThrown) {
-        $("#infoItem").text("No se pudo cargar la página");
-        console.log(errorThrown);
-      }
-    });
+    method: "POST",
+    url: urlAjax,
+    success: function(data) {
+      webLoader(urlSuccess);
+    }
+  });
 }

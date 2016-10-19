@@ -49,6 +49,9 @@
       case (ConfigApp::$ACTION_REGISTER_ADD_PERSON):
         $danceController->addPerson();
         break;
+      case (ConfigApp::$ACTION_REGISTER_DELETE_PERSON):
+        $danceController->deletePerson();
+        break;
       case (ConfigApp::$ACTION_REGISTER_SHOW_UPDATE_PERSON):
         $danceController->showUpdatePerson();
         break;

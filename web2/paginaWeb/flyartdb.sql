@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2016 a las 11:55:35
+-- Tiempo de generación: 20-10-2016 a las 01:47:01
 -- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 5.6.23
+-- Versión de PHP: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,12 +40,9 @@ CREATE TABLE `alumno` (
 INSERT INTO `alumno` (`id`, `nombre`, `email`, `telefono`) VALUES
 (1, 'gabi', 'fda@da.com', NULL),
 (2, 'fda', 'hjio', NULL),
-(7, 'frfrr', 'nbnbn@xs', NULL),
 (8, 'fdggghjj', 'fa@we', NULL),
 (9, 'juop', 'dvsv', NULL),
-(10, 'qwertyui', 'gdagf@dwv', NULL),
-(11, '', 'aaaa@gmail.com', 1212),
-(12, 'bbb', 'bbb@eds.com', 0);
+(10, 'qwertyui', 'gdagf@dwv', NULL);
 
 -- --------------------------------------------------------
 
@@ -56,21 +53,23 @@ INSERT INTO `alumno` (`id`, `nombre`, `email`, `telefono`) VALUES
 CREATE TABLE `clase` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `id_profesor` int(11) DEFAULT NULL
+  `id_profesor` int(11) DEFAULT NULL,
+  `informacion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clase`
 --
 
-INSERT INTO `clase` (`id`, `nombre`, `id_profesor`) VALUES
-(1, 'baby', 3),
-(2, 'contemporaneo', 1),
-(3, 'clasico', 1),
-(4, 'hiphop', 2),
-(5, 'contorsion', 5),
-(6, 'teatro', 1),
-(7, 'hoysone', 1);
+INSERT INTO `clase` (`id`, `nombre`, `id_profesor`, `informacion`) VALUES
+(1, 'baby', 3, 'esto es info df<B'),
+(2, 'contemporaneo', 1, 'BFNNNGANG'),
+(3, 'clasico', 1, 'hgshjjjxg\r\nnvzn\r\nnx\r\n\r\nnnn'),
+(4, 'hiphop', 2, 'ngznz\r\nngzngzn\r\nn\r\nn\r\nz\r\nnnn'),
+(5, 'contorsion', NULL, 'nvz'),
+(6, 'teatro', 1, 'nznn'),
+(7, 'hoysone', 1, 'jsghkskm'),
+(8, 'altaDanza', NULL, 'holholhlfdo');
 
 -- --------------------------------------------------------
 
@@ -92,10 +91,9 @@ INSERT INTO `inscripto` (`rowId`, `id_alumno`, `id_clase`) VALUES
 (1, 1, 2),
 (2, 1, 6),
 (3, 2, 1),
-(4, 7, 3),
-(5, 7, 5),
 (6, 9, 1),
-(7, 10, 4);
+(7, 10, 4),
+(8, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -117,9 +115,7 @@ CREATE TABLE `profesor` (
 INSERT INTO `profesor` (`id`, `nombre`, `email`, `telefono`) VALUES
 (1, 'Fernanda García', 'fer@gmail.com', '249-4256894'),
 (2, 'Jacqueline Paramá', 'jparama@hotmail.com', NULL),
-(3, 'Florencia Majorel', 'florm@gmail.com', '2244-56895'),
-(4, 'María José Medici', 'majo@yahoo.com', NULL),
-(5, 'Panchito Flores', 'jardinero@hotmail.com', '249-4325877');
+(3, 'Florencia Majorel', 'florm@gmail.com', '2244-56895');
 
 --
 -- Índices para tablas volcadas
@@ -168,12 +164,12 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `inscripto`
 --
 ALTER TABLE `inscripto`
-  MODIFY `rowId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `rowId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `profesor`
 --
@@ -187,7 +183,7 @@ ALTER TABLE `profesor`
 -- Filtros para la tabla `clase`
 --
 ALTER TABLE `clase`
-  ADD CONSTRAINT `FK_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`);
+  ADD CONSTRAINT `FK_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `inscripto`
