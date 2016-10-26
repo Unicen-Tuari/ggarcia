@@ -15,6 +15,7 @@
     public static $ACTION_DANCE_ADD = 'add_dance'; // agrega una clase
     public static $ACTION_REGISTER_ADD_PERSON = 'add_person'; // agrega un profesor/alumno
     public static $ACTION_REGISTER_SHOW_UPDATE_PERSON = 'show_update_person';
+    public static $ACTION_REGISTER_UPDATE_PERSON = 'update_person';
     public static $ACTION_SIGN_UP_SUBSCRIBE = 'subscribe'; // agrega un alumno a una clase
 
     // bajas

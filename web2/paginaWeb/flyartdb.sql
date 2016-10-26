@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2016 a las 01:47:01
+-- Tiempo de generación: 26-10-2016 a las 06:15:24
 -- Versión del servidor: 10.1.13-MariaDB
--- Versión de PHP: 7.0.8
+-- Versión de PHP: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,9 +40,12 @@ CREATE TABLE `alumno` (
 INSERT INTO `alumno` (`id`, `nombre`, `email`, `telefono`) VALUES
 (1, 'gabi', 'fda@da.com', NULL),
 (2, 'fda', 'hjio', NULL),
+(7, 'frfrr', 'nbnbn@xs', NULL),
 (8, 'fdggghjj', 'fa@we', NULL),
 (9, 'juop', 'dvsv', NULL),
-(10, 'qwertyui', 'gdagf@dwv', NULL);
+(10, 'qwertyui', 'gdagf@dwv', NULL),
+(11, '', 'aaaa@gmail.com', 1212),
+(12, 'bbb', 'bbb@eds.com', 0);
 
 -- --------------------------------------------------------
 
@@ -54,22 +57,24 @@ CREATE TABLE `clase` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `id_profesor` int(11) DEFAULT NULL,
-  `informacion` text
+  `informacion` text,
+  `imagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clase`
 --
 
-INSERT INTO `clase` (`id`, `nombre`, `id_profesor`, `informacion`) VALUES
-(1, 'baby', 3, 'esto es info df<B'),
-(2, 'contemporaneo', 1, 'BFNNNGANG'),
-(3, 'clasico', 1, 'hgshjjjxg\r\nnvzn\r\nnx\r\n\r\nnnn'),
-(4, 'hiphop', 2, 'ngznz\r\nngzngzn\r\nn\r\nn\r\nz\r\nnnn'),
-(5, 'contorsion', NULL, 'nvz'),
-(6, 'teatro', 1, 'nznn'),
-(7, 'hoysone', 1, 'jsghkskm'),
-(8, 'altaDanza', NULL, 'holholhlfdo');
+INSERT INTO `clase` (`id`, `nombre`, `id_profesor`, `informacion`, `imagen`) VALUES
+(1, 'baby', NULL, 'esto es de baby', '/img/baby.jpg'),
+(2, 'contemporaneo', 1, 'esto es de contempo', 'img/contemporaneo.jpg'),
+(3, 'clasico', NULL, 'esto es de clasico', '/img/clasico.jpg'),
+(4, 'hiphop', 2, 'esto es de hiphop', '/img/hiphop.jpg'),
+(5, 'contorsion', 5, 'esto es de contorsion', '/img/contorsion.jpg'),
+(6, 'teatro', 2, 'esto es de teatro', '/img/teatro.jpg'),
+(9, 'texteareaDanza', NULL, 'hshtrwtr', NULL),
+(12, 'loco', NULL, NULL, '/img/loco.jpg'),
+(13, 'ufa', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,9 +96,10 @@ INSERT INTO `inscripto` (`rowId`, `id_alumno`, `id_clase`) VALUES
 (1, 1, 2),
 (2, 1, 6),
 (3, 2, 1),
-(6, 9, 1),
-(7, 10, 4),
-(8, 1, 5);
+(8, 1, 1),
+(9, 12, 4),
+(10, 2, 9),
+(11, 9, 6);
 
 -- --------------------------------------------------------
 
@@ -115,7 +121,9 @@ CREATE TABLE `profesor` (
 INSERT INTO `profesor` (`id`, `nombre`, `email`, `telefono`) VALUES
 (1, 'Fernanda García', 'fer@gmail.com', '249-4256894'),
 (2, 'Jacqueline Paramá', 'jparama@hotmail.com', NULL),
-(3, 'Florencia Majorel', 'florm@gmail.com', '2244-56895');
+(3, 'Florencia Majorel', 'florm@gmail.com', '2244-56895'),
+(4, 'María José Medici', 'majo@yahoo.com', NULL),
+(5, 'Panchito Flores', 'jardinero@hotmail.com', '249-4325877');
 
 --
 -- Índices para tablas volcadas
@@ -164,12 +172,12 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `inscripto`
 --
 ALTER TABLE `inscripto`
-  MODIFY `rowId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rowId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `profesor`
 --
@@ -183,13 +191,13 @@ ALTER TABLE `profesor`
 -- Filtros para la tabla `clase`
 --
 ALTER TABLE `clase`
-  ADD CONSTRAINT `FK_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `FK_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`);
 
 --
 -- Filtros para la tabla `inscripto`
 --
 ALTER TABLE `inscripto`
-  ADD CONSTRAINT `FK_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id`),
+  ADD CONSTRAINT `FK_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_clase` FOREIGN KEY (`id_clase`) REFERENCES `clase` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

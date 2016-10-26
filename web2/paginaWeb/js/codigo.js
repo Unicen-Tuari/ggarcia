@@ -40,29 +40,6 @@ function setearFuncionalidad() {
     executeAjaxPOST("index.php?action=delete_person&tipo=P&dataId=" + $(this).attr("data-id"),"index.php?action=register");
   })
 
-  // actualiza la inscripción de un alumno
-  $('.updateAlumno_btn').on("click",function() {
-    event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: "index.php?action=show_update_person&tipo=A&dataId=" + $(this).attr("data-id"),
-      success: function(data) {
-        webLoader("index.php?action=inscripcion");
-      }
-    });
-  })
-  // actualiza la inscripción de un profesor
-  $('.updateProfesor_btn').on("click",function() {
-    /*event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: "index.php?action=update_profesor&dataId=" + $(this).attr("data-id"),
-      success: function(data) {
-        webLoader("index.php?action=inscripcion");
-      }
-    });*/
-  })
-
   // alta de una inscripcion de alumno/danza
   $('#inscribir').on("submit",function() {
     event.preventDefault();
@@ -93,12 +70,12 @@ function setearFuncionalidad() {
   })
 
   // alta de una danza sin profesor asignado
-  $('#registroClase').on("submit",function() {
+  $('#registroClase').submit(function(event) {
     event.preventDefault();
     var formData = new FormData(this);
     $.ajax({
      method: "POST",
-     url: "index.php?action=add_dance&nameD=" + $("#nameDanceForm").val() + "&infoD=" + $("#infoDanceForm").val(),
+     url: "index.php?action=add_dance",
      data: formData,
      contentType: false,
      cache: false,
@@ -173,6 +150,24 @@ function setearFuncionalidad() {
     webLoader("index.php?action=show_update_person&tipo=P&dataId=" + $(this).attr("data-id"));
   })
 
+  // actualizar de una persona
+  $('#updatePersona').on("submit",function() {
+    event.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+     method: "POST",
+     url: "index.php?action=update_person&person=" + $("#tipo").val() + "&idP=" + $("#id").val() + "&nameP=" + $("#name").val() + "&emailP=" + $("#email").val() + "&telP=" + $("#tel").val(),
+     data: formData,
+     contentType: false,
+     cache: false,
+     processData:false,
+     success: function(data){
+       webLoader("index.php?action=register");
+     }
+   });
+  });
+
+
 }
 
 $(document).ready(function() {
@@ -203,12 +198,12 @@ function divLoader(link,id,solapa) {
       dataType: "html",
       success: function(data) {
         switch(solapa) {
-          case inscripto: {
+          case "inscripto": {
             $("#sign2dance").html(data);
             setearFuncionalidad();
             break;
           }
-          case informacion: {
+          case "informacion": {
             $("#infoItem").html(data);
             setearFuncionalidad();
             break;

@@ -11,14 +11,18 @@
           </div>
           <div id="collapse1" class="panel-collapse collapse">
             <div class="panel-body">
-              <form id="registroClase">
+              <form id="registroClase" action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="name">Nombre Danza</label>
-                  <input type="text" class="form-control" id="nameDanceForm" placeholder="Ingrese nombre"></input>
+                  <input type="text" class="form-control" name="nameDanceForm" id="nameDanceForm" placeholder="Ingrese nombre"></input>
                 </div>
                 <div class="form-group">
                   <label for="name">Informaci&oacute;n</label>
-                  <textarea type="textarea" class="form-control" id="infoDanceForm" placeholder="Ingrese informaci&oacute;n"></textarea>
+                  <textarea type="textarea" class="form-control" name="infoDanceForm" id="infoDanceForm" placeholder="Ingrese informaci&oacute;n"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="image">Im&aacute;gen</label>
+                  <input type="file" name="image[]" id="image" multiple>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Registrar</button>

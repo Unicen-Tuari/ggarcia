@@ -25,7 +25,11 @@
     }
 
     public function addDance() {
-      $this->model->addDance($_REQUEST['nameD'],$_REQUEST['infoD']);
+         $image_name = $_FILES['image']['name'][0];
+         $image_tmp = $_FILES['image']['tmp_name'][0];
+         $image['name']=$image_name;
+         $image['tmp_name']=$image_tmp;
+      $this->model->addDance($_POST['nameDanceForm'],$_POST['infoDanceForm'],$image);
     }
 
     public function deleteDance() {
@@ -36,6 +40,10 @@
         $this->model->deleteDance($_REQUEST['dataId']);
         return true;
       }
+    }
+
+    public function updatePerson() {
+      $this->model->updatePerson($_REQUEST['person'],$_REQUEST['idP'],$_REQUEST['nameP'],$_REQUEST['emailP'],$_REQUEST['telP']);
     }
 
     public function infoDance() {

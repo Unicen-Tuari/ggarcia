@@ -19,13 +19,20 @@
       return $danceList;
     }
 
-    function addDance($name,$info) {
+    public function copyImage($image){
+      $path = 'img/'.$image["name"];
+      copy($image["tmp_name"], $path);
+      return $path;
+    }
+
+    function addDance($name,$info,$image) {
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
         $this->$db->beginTransaction();*/
-        $insertDance = $this->db->prepare("INSERT INTO clase(nombre,informacion) VALUES(?,?)");
-        $insertDance->execute(array($name,$info));
-        $this->$db->commit();
+          $path_image =  $this->copyImage($image);
+          $insertDance = $this->db->prepare("INSERT INTO clase(nombre,informacion,imagen) VALUES(?,?,?)");
+          $insertDance->execute(array($name,$info,$path_image));
+          $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();
         log($ex->getMessage());
@@ -163,7 +170,7 @@
 
     function getTeacherById($id) {
       $student;
-      $select = $this->db->prepare("SELECT * FROM alumno WHERE id = ?");
+      $select = $this->db->prepare("SELECT * FROM profesor WHERE id = ?");
       $select->execute(array($id));
       $student = $select->fetchAll(PDO::FETCH_ASSOC);
       return $student;
@@ -212,16 +219,16 @@
       }*/
     }
 
-    function updatePerson($tipoTabla,$nombre,$email,$tel){
+    function updatePerson($tipoTabla,$id,$nombre,$email,$tel){
       /*$this->$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       try {
         $this->$db->beginTransaction();*/
         if ($tipoTabla == 'A')
-          $update = $this->db->prepare("UPDATE alumno(nombre,email,telefono) VALUES (?,?,?)");
-        elseif ($tabla == 'P') {
-          $update = $this->db->prepare("UPDATE profesor(nombre,email,telefono) VALUES (?,?,?)");
+          $update = $this->db->prepare("UPDATE alumno SET nombre = ?, email = ?, telefono = ? WHERE id = ?");
+        elseif ($tipoTabla == 'P') {
+          $update = $this->db->prepare("UPDATE profesor SET nombre = ?, email = ?, telefono = ? WHERE id = ?");
         }
-        $update->execute(array($nombre,$email,$tel));
+        $update->execute(array($nombre,$email,$tel,$id));
         $this->$db->commit();
       /*} catch(PDOException $ex) {
         $this->$db->rollBack();
